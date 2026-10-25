@@ -5,11 +5,11 @@
 import numpy as np
 
 G = 6.67430e-11 # m^3 / kg * s^2
-dt = 1e-2 # s
+dt = 1e-3 # s
 
 
 class Planet:
-    def __init__(self, masse: int=1 , x_pos=0, y_pos=0, speed=0, degree=0):
+    def __init__(self, masse: float=1 , x_pos: float=0, y_pos: float=0, speed: float=0, degree: float=0):
         self.masse = masse # kg
         self.x_pos = x_pos # m
         self.y_pos = y_pos # m
