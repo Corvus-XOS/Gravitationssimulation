@@ -2,7 +2,8 @@
 #
 # Autor: Jonas
 
-import numpy as np
+# import numpy as np
+import math
 
 G = 6.67430e-11 # m^3 / kg * s^2
 dt = 1e-3 # s
@@ -13,43 +14,44 @@ class Planet:
         self.masse = masse # kg
         self.x_pos = x_pos # m
         self.y_pos = y_pos # m
-        self.x_spd = speed * np.cos(np.deg2rad(degree)) # m/s
-        self.y_spd = speed * np.sin(np.deg2rad(degree)) # m/s
+        rad = math.radians(degree)
+        self.x_spd = speed * math.cos(rad) # m/s
+        self.y_spd = speed * math.sin(rad) # m/s
         self.dx_spd = 0 # m/s
         self.dy_spd = 0 # m/s
 
-def update(arr: list["Planet"], n: int, i: int):
-    for j in range(i + 1, n):
-        # if (j != i):
-        # r = np.hypot(arr[i].x_pos - arr[j].x_pos, arr[i].y_pos - arr[j].y_pos)
-        dx = arr[j].x_pos - arr[i].x_pos
-        dy = arr[j].y_pos - arr[i].y_pos
-        F = G * arr[i].masse * arr[j].masse / (np.pow(dx, 2) + np.pow(dy, 2))
+def update(arr: list["Planet"], n: int):
+    for i in range(0, n - 1):
+        for j in range(i + 1, n):
+            # Berechnung der Kräfte
+            dx = arr[i].x_pos - arr[j].x_pos
+            dy = arr[i].y_pos - arr[j].y_pos
+            r = math.sqrt(dx**2 + dy**2)
+            F = G * arr[i].masse * arr[j].masse / r**3
 
-        alpha = np.arctan2(-dy, -dx)
-        dx_spd = F * dt * np.cos(alpha)
-        dy_spd = F * dt * np.sin(alpha)
+            dx_spd = F * dt * dx
+            dy_spd = F * dt * dy
+
+            # Berechung Geschwindigkeitsänderung
+            arr[i].dx_spd -= dx_spd / arr[i].masse
+            arr[i].dy_spd -= dy_spd / arr[i].masse
+
+            arr[j].dx_spd += dx_spd / arr[j].masse
+            arr[j].dy_spd += dy_spd / arr[j].masse
+
+    # Aktualisierung der Positionen
+    update_pos(arr=arr, n=n)
 
 
 
-        arr[i].dx_spd -= dx_spd / arr[i].masse
-        arr[i].dy_spd -= dy_spd / arr[i].masse
 
-        arr[j].dx_spd += dx_spd / arr[j].masse
-        arr[j].dy_spd += dy_spd / arr[j].masse
+def update_pos(arr: list["Planet"], n: int):
+    for i in range(0, n):
+        arr[i].x_spd += arr[i].dx_spd
+        arr[i].y_spd += arr[i].dy_spd
 
+        arr[i].x_pos += arr[i].x_spd * dt
+        arr[i].y_pos += arr[i].y_spd * dt
 
-
-
-def update_pos(arr: list["Planet"], i: int):
-    arr[i].x_spd += arr[i].dx_spd
-    arr[i].y_spd += arr[i].dy_spd
-
-    arr[i].x_pos += arr[i].x_spd * dt
-    arr[i].y_pos += arr[i].y_spd * dt
-
-    arr[i].dx_spd = 0
-    arr[i].dy_spd = 0
-
-    # arr[j].x_pos += arr[j].x_spd * dt
-    # arr[j].y_pos += arr[j].y_spd * dt
+        arr[i].dx_spd = 0
+        arr[i].dy_spd = 0
