@@ -6,11 +6,11 @@
 import math
 
 G = 6.67430e-11 # m^3 / kg * s^2
-dt = 1e-3 # s
+dt = 1e-4 # s
 
 
 class Planet:
-    def __init__(self, masse: float=1 , x_pos: float=0, y_pos: float=0, speed: float=0, degree: float=0):
+    def __init__(self, masse: float=1 , x_pos: float=0, y_pos: float=0, speed: float=0, degree: float=0, color: str="black"):
         self.masse = masse # kg
         self.x_pos = x_pos # m
         self.y_pos = y_pos # m
@@ -19,6 +19,7 @@ class Planet:
         self.y_spd = speed * math.sin(rad) # m/s
         self.dx_spd = 0.0 # m/s
         self.dy_spd = 0.0 # m/s
+        self.color = color
 
 def update(arr: list["Planet"], n: int):
     for i in range(0, n - 1):

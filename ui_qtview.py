@@ -32,8 +32,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.start = QPushButton(self.centralwidget)
         self.start.setObjectName(u"start")
-        self.start.setCheckable(True)
-        self.start.setAutoRepeat(True)
+        self.start.setCheckable(False)
+        self.start.setAutoRepeat(False)
 
         self.horizontalLayout.addWidget(self.start)
 

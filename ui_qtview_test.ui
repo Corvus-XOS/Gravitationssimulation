@@ -23,10 +23,10 @@
          <string>Start</string>
         </property>
         <property name="checkable">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="autoRepeat">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>

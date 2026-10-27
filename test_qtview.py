@@ -5,7 +5,7 @@ from PySide6.QtGui import QBrush, QPen, QColor, QPainter
 from ui_qtview import Ui_MainWindow
 import physics_core as pc
 
-STEPS_PER_FRAME = 100
+STEPS_PER_FRAME = 1000
 RADIUS = 3
 COLORS = ["red", "green", "blue"]
 
@@ -39,7 +39,10 @@ class MainWindow(QMainWindow):
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.step)
-        self.timer.start(16)
+        # self.timer.start(16)
+
+        self.ui.start.clicked.connect(self.start)
+        self.ui.stop.clicked.connect(self.stop)
 
     def step(self):
         for _ in range(STEPS_PER_FRAME):
@@ -47,9 +50,9 @@ class MainWindow(QMainWindow):
 
         for i, p in enumerate(self.planets):
             x0, y0 = self.last_pos[i]
-            self.scene.addLine(x0, y0, p.x_pos, p.y_pos, QPen(QColor(COLORS[i])))
+            # self.scene.addLine(x0, y0, p.x_pos, p.y_pos, QPen(QColor(COLORS[i])))
             self.items[i].setPos(p.x_pos, p.y_pos)
-            self.last_pos[i] = (p.x_pos, p.y_pos)
+            # self.last_pos[i] = (p.x_pos, p.y_pos)
 
 
 
@@ -71,12 +74,11 @@ class MainWindow(QMainWindow):
     #     self.ui.start.pressed.connect(self.start)
 
 
-    # def start(self):
-    #     # for i in range(0, 1000):
-    #     while self.ui.start.isChecked():
-    #         pc.update(arr=planet_arr, n=len(planet_arr))
-    #         self.kreis.setPos(planet_arr[1].x_pos + 200, planet_arr[1].y_pos + 200)
-    #         self.ui.graphicsView.update()
+    def start(self):
+        self.timer.start(16)
+
+    def stop(self):
+        self.timer.stop()
 
     
 
