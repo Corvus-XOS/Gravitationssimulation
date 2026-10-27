@@ -17,8 +17,8 @@ class Planet:
         rad = math.radians(degree)
         self.x_spd = speed * math.cos(rad) # m/s
         self.y_spd = speed * math.sin(rad) # m/s
-        self.dx_spd = 0 # m/s
-        self.dy_spd = 0 # m/s
+        self.dx_spd = 0.0 # m/s
+        self.dy_spd = 0.0 # m/s
 
 def update(arr: list["Planet"], n: int):
     for i in range(0, n - 1):
@@ -53,5 +53,5 @@ def update_pos(arr: list["Planet"], n: int):
         arr[i].x_pos += arr[i].x_spd * dt
         arr[i].y_pos += arr[i].y_spd * dt
 
-        arr[i].dx_spd = 0
-        arr[i].dy_spd = 0
+        arr[i].dx_spd = 0.0
+        arr[i].dy_spd = 0.0
