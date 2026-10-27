@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
 
-from PySide6.QtLocation import QPlaceUser
-from dataclasses import dataclass
 import sys
+from dataclasses import dataclass
 
 from PySide6.QtCore import QFile, Qt
-from PySide6.QtWidgets import QApplication, QDialog, QListWidget, QSpinBox, QLabel, QListWidgetItem
+from PySide6.QtLocation import QPlaceUser
+from PySide6.QtWidgets import (
+    QApplication,
+    QDialog,
+    QLabel,
+    QListWidget,
+    QListWidgetItem,
+    QSpinBox,
+)
 
-from ui_List_Widget import Ui_Dialog #Form ist der Name des Fensters
+from ui_List_Widget import Ui_Dialog  #Form ist der Name des Fensters
+
 
 @dataclass
 class Item:
