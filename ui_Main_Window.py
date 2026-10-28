@@ -284,9 +284,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.pushStartSim)
 
-        self.pushStopSIm = QPushButton(self.dockWidgetContents)
-        self.pushStopSIm.setObjectName(u"pushStopSIm")
-        self.pushStopSIm.setStyleSheet(u"QPushButton{\n"
+        self.pushStopSim = QPushButton(self.dockWidgetContents)
+        self.pushStopSim.setObjectName(u"pushStopSim")
+        self.pushStopSim.setStyleSheet(u"QPushButton{\n"
 "	background-color: red;\n"
 "	border-radius: 4px;\n"
 "}\n"
@@ -295,7 +295,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(150, 20, 0);\n"
 "}")
 
-        self.verticalLayout.addWidget(self.pushStopSIm)
+        self.verticalLayout.addWidget(self.pushStopSim)
 
 
         self.verticalLayout_2.addLayout(self.verticalLayout)
@@ -304,7 +304,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 850, 38))
+        self.menuBar.setGeometry(QRect(0, 0, 850, 30))
         self.menuSimulation = QMenu(self.menuBar)
         self.menuSimulation.setObjectName(u"menuSimulation")
         self.menuHilfe = QMenu(self.menuBar)
@@ -363,7 +363,7 @@ class Ui_MainWindow(object):
         self.labelSteps.setText(QCoreApplication.translate("MainWindow", u"Schritte pro Frame", None))
         self.labelAccuracy.setText(QCoreApplication.translate("MainWindow", u"Genauigkeit", None))
         self.pushStartSim.setText(QCoreApplication.translate("MainWindow", u"Start", None))
-        self.pushStopSIm.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
+        self.pushStopSim.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.menuSimulation.setTitle(QCoreApplication.translate("MainWindow", u"Simulation", None))
         self.menuHilfe.setTitle(QCoreApplication.translate("MainWindow", u"Hilfe", None))
     # retranslateUi

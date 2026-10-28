@@ -11,7 +11,7 @@ class MassObject:
         self.dx_spd : float = 0.0
         self.dy_spd : float = 0.0
         self.__inVelo : float = 0.0
-        self.__color = "black"
+        self.__color = "schwarz"
         self.active = True
         self.__name = name
 
@@ -32,7 +32,7 @@ class MassObject:
         return self.__color
     
     def setColor(self, newColor):
-        validColors = ["black", "green", "red", "blue", "yellow", "purple"]
+        validColors = ["schwarz", "blau", "grün", "rot", "blau", "gelb", "lila"]
         if newColor.lower() in validColors:
             self.__color = newColor
     

@@ -1,8 +1,11 @@
-# Python Projekt 5. Semester
-## Wichtige Infos und Links zum Projekt:
-Link für Git: https://git-scm.com/cheat-sheet
-Verwendete Python Version: 3.14.7
-## Relevante Packages:
-    - Pyside 6
-    - Numpy
-    - ...
+# Frontend Repo Roadmap:
+    - Erste lauffähige Ui: ✅
+    - Dialog für Element erstellen und löschen: WIP
+    - Dock einbinden: WIP
+    - Menü einbinden: WIP
+
+# Elemente für Backend
+    - Start: pushStartSim (Pushbutton), verknüpft mit startSim()
+    - Stop: pushStopSim (Pushbutton), verknüpft mit stopSim()
+    - Schritte p. Frame: spinSteps (SpinBox)
+    - Genauigkeit: doubleAccuracy (DoubleSpinBox)

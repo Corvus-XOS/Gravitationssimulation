@@ -365,7 +365,7 @@ QPushButton:pressed{
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushStopSIm">
+        <widget class="QPushButton" name="pushStopSim">
          <property name="styleSheet">
           <string notr="true">QPushButton{
 	background-color: red;
@@ -392,7 +392,7 @@ QPushButton:pressed{
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>38</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">
