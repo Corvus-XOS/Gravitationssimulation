@@ -16,21 +16,22 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QDialog, QHBoxLayout, QLabel,
-    QLineEdit, QPushButton, QSizePolicy, QVBoxLayout,
-    QWidget)
+    QLineEdit, QPushButton, QSizePolicy, QSpacerItem,
+    QVBoxLayout, QWidget)
 
 class Ui_NameDialog(object):
     def setupUi(self, NameDialog):
         if not NameDialog.objectName():
             NameDialog.setObjectName(u"NameDialog")
-        NameDialog.resize(250, 125)
+        NameDialog.setWindowModality(Qt.WindowModality.WindowModal)
+        NameDialog.resize(275, 150)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(NameDialog.sizePolicy().hasHeightForWidth())
         NameDialog.setSizePolicy(sizePolicy)
-        NameDialog.setMinimumSize(QSize(250, 125))
-        NameDialog.setMaximumSize(QSize(250, 150))
+        NameDialog.setMinimumSize(QSize(275, 150))
+        NameDialog.setMaximumSize(QSize(275, 150))
         self.verticalLayout_2 = QVBoxLayout(NameDialog)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout = QVBoxLayout()
@@ -42,10 +43,24 @@ class Ui_NameDialog(object):
 
         self.verticalLayout.addWidget(self.labelName, 0, Qt.AlignmentFlag.AlignHCenter)
 
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer)
+
         self.lineName = QLineEdit(NameDialog)
         self.lineName.setObjectName(u"lineName")
 
         self.verticalLayout.addWidget(self.lineName, 0, Qt.AlignmentFlag.AlignHCenter)
+
+        self.labelError = QLabel(NameDialog)
+        self.labelError.setObjectName(u"labelError")
+        self.labelError.setStyleSheet(u"color: red;")
+
+        self.verticalLayout.addWidget(self.labelError, 0, Qt.AlignmentFlag.AlignHCenter)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer_2)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -88,8 +103,9 @@ class Ui_NameDialog(object):
     # setupUi
 
     def retranslateUi(self, NameDialog):
-        NameDialog.setWindowTitle(QCoreApplication.translate("NameDialog", u"Bezeichnung festlegen", None))
+        NameDialog.setWindowTitle(QCoreApplication.translate("NameDialog", u"Bezeichnung Planet", None))
         self.labelName.setText(QCoreApplication.translate("NameDialog", u"Bezeichnung f\u00fcr Planeten festlegen", None))
+        self.labelError.setText("")
         self.pushDiscard.setText(QCoreApplication.translate("NameDialog", u"Abbrechen", None))
         self.pushAccept.setText(QCoreApplication.translate("NameDialog", u"\u00dcbernehmen", None))
     # retranslateUi

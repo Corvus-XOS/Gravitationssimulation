@@ -23,7 +23,7 @@ from PySide6.QtWidgets import (
     QWidgetAction,
 )
 
-from auxFile import MassObject
+from auxFile import MassObject, SetNameDialog, DeleteDialog
 from ui_Main_Window import Ui_MainWindow
 
 planetList : list[MassObject] = []
@@ -60,26 +60,35 @@ class MainWindow(QMainWindow):
 
     
     def addElem(self):
-        planet = MassObject("WIP-Name" + str(self.index))
-        self.index += 1
-        self.planetList.append(planet)
-        self.ui.comboElement.addItem(planet.getName())
-        #CHANGE: Name needs to be unique, Pop-up required
-        self.ui.statusBar.showMessage("Element hinzugefügt", 5000)
+        nameDialog = SetNameDialog(self.planetList)
+        if nameDialog.exec() == QDialog.DialogCode.Accepted:
+            elemName = planetList[-1].getName()
+            self.ui.comboElement.addItem(elemName)
+
+            self.count = self.ui.comboElement.count()
+            self.ui.comboElement.setCurrentIndex(self.count - 1)
+
+            self.ui.statusBar.showMessage("Element hinzugefügt", 5000)
         
 
     def delElem(self):
         curText = self.ui.comboElement.currentText()
-        idx : int
+        idx : int = -1
 
         for obj in planetList:
             if obj.getName() == curText:
                 idx = planetList.index(obj)
+                break
 
-        self.ui.comboElement.removeItem(self.ui.comboElement.currentIndex())
-        planetList.pop(idx)
-        self.ui.statusBar.showMessage("Element gelöscht", 5000)
-
+        if idx != -1:
+            deleteDialog = DeleteDialog(planetList[idx].getName())
+            if deleteDialog.exec() == QDialog.DialogCode.Accepted:
+                self.ui.comboElement.removeItem(self.ui.comboElement.currentIndex())
+                planetList.pop(idx)
+                self.ui.statusBar.showMessage("Element gelöscht", 5000)
+                return
+            else:
+                return
     
     def textChange(self):
         curText = self.ui.comboElement.currentText()
