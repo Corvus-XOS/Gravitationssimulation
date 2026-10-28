@@ -18,9 +18,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDockWidget,
     QDoubleSpinBox, QFrame, QGraphicsView, QHBoxLayout,
-    QLabel, QLineEdit, QMainWindow, QMenu,
-    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
-    QSpinBox, QStatusBar, QVBoxLayout, QWidget)
+    QLabel, QMainWindow, QMenu, QMenuBar,
+    QPushButton, QSizePolicy, QSpacerItem, QSpinBox,
+    QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -115,12 +115,6 @@ class Ui_MainWindow(object):
         self.comboElement.setObjectName(u"comboElement")
 
         self.verticalLayout.addWidget(self.comboElement)
-
-        self.lineEdit = QLineEdit(self.dockWidgetContents)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setClearButtonEnabled(False)
-
-        self.verticalLayout.addWidget(self.lineEdit)
 
         self.checkAktiv = QCheckBox(self.dockWidgetContents)
         self.checkAktiv.setObjectName(u"checkAktiv")
@@ -310,7 +304,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 850, 30))
+        self.menuBar.setGeometry(QRect(0, 0, 850, 38))
         self.menuSimulation = QMenu(self.menuBar)
         self.menuSimulation.setObjectName(u"menuSimulation")
         self.menuHilfe = QMenu(self.menuBar)
@@ -355,7 +349,6 @@ class Ui_MainWindow(object):
         self.labelElemSet.setText(QCoreApplication.translate("MainWindow", u"Element", None))
         self.pushCreate.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.pushDelete.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Kennzeichnung", None))
         self.checkAktiv.setText(QCoreApplication.translate("MainWindow", u"Aktiv", None))
         self.labelMass.setText(QCoreApplication.translate("MainWindow", u"Masse", None))
         self.labelVelo.setText(QCoreApplication.translate("MainWindow", u"Geschwindigkeit", None))

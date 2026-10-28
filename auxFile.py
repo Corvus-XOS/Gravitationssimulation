@@ -1,9 +1,7 @@
 #Contains auxillary functions and classes for main.py
-from math import sqrt
-
 
 class MassObject:
-    def __init__(self, uid):
+    def __init__(self, name):
         self.__mass : int = 0
         self.x_pos : int = 0
         self.y_pos : int = 0
@@ -12,10 +10,10 @@ class MassObject:
         self.y_spd : float = 0.0
         self.dx_spd : float = 0.0
         self.dy_spd : float = 0.0
+        self.__inVelo : float = 0.0
         self.__color = "black"
         self.active = True
-        self.name = "Element"
-        self.__uid = uid #Contains unique, non changable id to distinguish elements
+        self.__name = name
 
     def getMass(self):
         return self.__mass
@@ -38,8 +36,13 @@ class MassObject:
         if newColor.lower() in validColors:
             self.__color = newColor
     
-    def getUid(self):
-        return self.__uid
+    def getName(self):
+        return self.__name
+    
+    def getInVelo(self):
+        return self.__inVelo
 
-    def getVelo(self):
-        return sqrt(self.dx_spd * self.dx_spd + self.dy_spd * self.dy_spd)
+    def setInVelo(self, newInVelo):
+        if newInVelo >= 0.0 :
+            self.__inVelo = newInVelo
+    

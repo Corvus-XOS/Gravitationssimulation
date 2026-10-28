@@ -115,16 +115,6 @@ QPushButton:pressed{
        <item>
         <widget class="QComboBox" name="comboElement"/>
        </item>
-       <item>
-        <widget class="QLineEdit" name="lineEdit">
-         <property name="placeholderText">
-          <string>Kennzeichnung</string>
-         </property>
-         <property name="clearButtonEnabled">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
         <widget class="QCheckBox" name="checkAktiv">
          <property name="layoutDirection">
@@ -402,7 +392,7 @@ QPushButton:pressed{
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>30</height>
+     <height>38</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">
