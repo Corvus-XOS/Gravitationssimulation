@@ -1,7 +1,7 @@
 # Frontend Repo Roadmap:
     - Erste lauffähige Ui: ✅
-    - Dialog für Element erstellen und löschen: WIP
-    - Dock einbinden: WIP
+    - Dialog für Element erstellen und löschen: ✅
+    - Dock einbinden: WIP, aber optional
     - Menü einbinden: WIP
 
 # Elemente für Backend

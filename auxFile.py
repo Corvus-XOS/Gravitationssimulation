@@ -1,4 +1,9 @@
 #Contains auxillary functions and classes for main.py
+from PySide6.QtWidgets import QDialog
+
+from ui_Name_Dialog import Ui_NameDialog
+from Ui_Delete_Dialog import Ui_DeleteDialog
+
 
 class MassObject:
     def __init__(self, name):
@@ -45,4 +50,50 @@ class MassObject:
     def setInVelo(self, newInVelo):
         if newInVelo >= 0.0 :
             self.__inVelo = newInVelo
+
+class SetNameDialog(QDialog):
+    def __init__(self, planetList : list[MassObject]):
+        super().__init__()
+        self.ui = Ui_NameDialog()
+        self.ui.setupUi(self)
+        self.planetList = planetList
+        self.success = False
+        self.ui.labelError.setText("")
+
+        self.ui.pushAccept.clicked.connect(self.setName)
+        self.ui.pushDiscard.clicked.connect(self.abort)
+
+    def abort(self):
+        self.close()
     
+    def setName(self):
+        name = self.ui.lineName.text()
+        for obj in self.planetList:
+            if obj.getName() == name:
+                self.ui.labelError.setText("Die Bezeichnung ist bereits vergeben")
+                return
+        self.planetList.append(MassObject(name))
+        self.ui.labelError.setVisible(False)
+        self.success = True
+        self.accept()
+    
+    def getResFlag(self):
+        return self.success
+
+class DeleteDialog(QDialog):
+    def __init__(self, name):
+        super().__init__()
+        self.ui = Ui_DeleteDialog()
+        self.ui.setupUi(self)
+        self.name = name
+        self.text = "Möchten Sie Element " + self.name + " löschen?"
+        self.ui.labelDelete.setText(self.text)
+
+        self.ui.pushAccept.clicked.connect(self.delete)
+        self.ui.pushDiscard.clicked.connect(self.abort)
+    
+    def delete(self):
+        self.accept()
+    
+    def abort(self):
+        self.close()
