@@ -154,8 +154,8 @@ class MainWindow(QMainWindow):
             else:
                 self.ui.checkAktiv.setCheckState(Qt.CheckState.Unchecked)
             self.ui.lineEditMasse.setText(f"{planet.getMass():.2e}")
-            self.ui.spinVelo.setValue(planet.getInVelo())
-            self.ui.spinDegree.setValue(planet.getDegree())
+            self.ui.spinVelo.setValue(int(planet.getInVelo()))
+            self.ui.spinDegree.setValue(int(planet.getDegree()))
             self.ui.spinXPos.setValue(planet.x_pos)
             self.ui.spinYPos.setValue(planet.y_pos)
             idx = self.ui.comboColor.findText(planet.getColor())
