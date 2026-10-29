@@ -1,6 +1,6 @@
 #Contains auxillary functions and classes for main.py
 from PySide6.QtWidgets import QDialog
-
+#Namen anpassen
 from Ui_Delete_Dialog import Ui_DeleteDialog
 from Ui_Name_Dialog import Ui_NameDialog
 

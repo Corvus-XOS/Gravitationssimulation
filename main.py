@@ -12,7 +12,7 @@ from PySide6.QtWidgets import (
 )
 
 from auxFile import DeleteDialog, MassObject, SetNameDialog
-from ui_Main_Window import Ui_MainWindow
+from Ui_Main_Window import Ui_MainWindow
 
 planetList : list[MassObject] = []
 

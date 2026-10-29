@@ -134,7 +134,8 @@ class Ui_MainWindow(object):
 
         self.spinMass = QSpinBox(self.dockWidgetContents)
         self.spinMass.setObjectName(u"spinMass")
-        self.spinMass.setMaximumSize(QSize(50, 16777215))
+        self.spinMass.setMinimumSize(QSize(100, 0))
+        self.spinMass.setMaximumSize(QSize(100, 16777215))
         self.spinMass.setMaximum(999)
 
         self.verticalLayout.addWidget(self.spinMass, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -147,7 +148,8 @@ class Ui_MainWindow(object):
 
         self.spinVelo = QSpinBox(self.dockWidgetContents)
         self.spinVelo.setObjectName(u"spinVelo")
-        self.spinVelo.setMaximumSize(QSize(50, 16777215))
+        self.spinVelo.setMinimumSize(QSize(100, 0))
+        self.spinVelo.setMaximumSize(QSize(100, 16777215))
 
         self.verticalLayout.addWidget(self.spinVelo, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -159,7 +161,8 @@ class Ui_MainWindow(object):
 
         self.spinDegree = QSpinBox(self.dockWidgetContents)
         self.spinDegree.setObjectName(u"spinDegree")
-        self.spinDegree.setMaximumSize(QSize(50, 16777215))
+        self.spinDegree.setMinimumSize(QSize(100, 0))
+        self.spinDegree.setMaximumSize(QSize(100, 16777215))
         self.spinDegree.setMaximum(360)
 
         self.verticalLayout.addWidget(self.spinDegree, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -173,28 +176,39 @@ class Ui_MainWindow(object):
         self.horizontalLayout_d2.setObjectName(u"horizontalLayout_d2")
         self.labelX = QLabel(self.dockWidgetContents)
         self.labelX.setObjectName(u"labelX")
+        self.labelX.setMaximumSize(QSize(10, 16777215))
 
         self.horizontalLayout_d2.addWidget(self.labelX)
 
         self.spinXPos = QSpinBox(self.dockWidgetContents)
         self.spinXPos.setObjectName(u"spinXPos")
+        self.spinXPos.setMinimumSize(QSize(100, 0))
+        self.spinXPos.setMaximumSize(QSize(100, 16777215))
         self.spinXPos.setMaximum(1000)
 
         self.horizontalLayout_d2.addWidget(self.spinXPos)
 
+
+        self.verticalLayout.addLayout(self.horizontalLayout_d2)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.labelY = QLabel(self.dockWidgetContents)
         self.labelY.setObjectName(u"labelY")
+        self.labelY.setMaximumSize(QSize(10, 16777215))
 
-        self.horizontalLayout_d2.addWidget(self.labelY)
+        self.horizontalLayout_3.addWidget(self.labelY)
 
         self.spinYPos = QSpinBox(self.dockWidgetContents)
         self.spinYPos.setObjectName(u"spinYPos")
+        self.spinYPos.setMinimumSize(QSize(100, 0))
+        self.spinYPos.setMaximumSize(QSize(100, 16777215))
         self.spinYPos.setMaximum(1000)
 
-        self.horizontalLayout_d2.addWidget(self.spinYPos)
+        self.horizontalLayout_3.addWidget(self.spinYPos)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout_d2)
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
 
         self.labelColor = QLabel(self.dockWidgetContents)
         self.labelColor.setObjectName(u"labelColor")
@@ -255,7 +269,8 @@ class Ui_MainWindow(object):
 
         self.spinSteps = QSpinBox(self.dockWidgetContents)
         self.spinSteps.setObjectName(u"spinSteps")
-        self.spinSteps.setMaximumSize(QSize(50, 16777215))
+        self.spinSteps.setMinimumSize(QSize(100, 0))
+        self.spinSteps.setMaximumSize(QSize(100, 16777215))
 
         self.verticalLayout.addWidget(self.spinSteps, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -266,7 +281,8 @@ class Ui_MainWindow(object):
 
         self.doubleAccuracy = QDoubleSpinBox(self.dockWidgetContents)
         self.doubleAccuracy.setObjectName(u"doubleAccuracy")
-        self.doubleAccuracy.setMaximumSize(QSize(50, 16777215))
+        self.doubleAccuracy.setMinimumSize(QSize(100, 0))
+        self.doubleAccuracy.setMaximumSize(QSize(100, 16777215))
 
         self.verticalLayout.addWidget(self.doubleAccuracy, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -307,7 +323,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 850, 30))
+        self.menuBar.setGeometry(QRect(0, 0, 850, 38))
         self.menuSimulation = QMenu(self.menuBar)
         self.menuSimulation.setObjectName(u"menuSimulation")
         self.menuHilfe = QMenu(self.menuBar)

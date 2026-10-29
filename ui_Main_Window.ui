@@ -143,9 +143,15 @@ QPushButton:pressed{
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
         <widget class="QSpinBox" name="spinMass">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -166,9 +172,15 @@ QPushButton:pressed{
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
         <widget class="QSpinBox" name="spinVelo">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -186,9 +198,15 @@ QPushButton:pressed{
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
         <widget class="QSpinBox" name="spinDegree">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -208,6 +226,12 @@ QPushButton:pressed{
         <layout class="QHBoxLayout" name="horizontalLayout_d2">
          <item>
           <widget class="QLabel" name="labelX">
+           <property name="maximumSize">
+            <size>
+             <width>10</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>X</string>
            </property>
@@ -215,13 +239,35 @@ QPushButton:pressed{
          </item>
          <item>
           <widget class="QSpinBox" name="spinXPos">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="maximum">
             <number>1000</number>
            </property>
           </widget>
          </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QLabel" name="labelY">
+           <property name="maximumSize">
+            <size>
+             <width>10</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Y</string>
            </property>
@@ -229,6 +275,18 @@ QPushButton:pressed{
          </item>
          <item>
           <widget class="QSpinBox" name="spinYPos">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="maximum">
             <number>1000</number>
            </property>
@@ -309,9 +367,15 @@ QPushButton:pressed{
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
         <widget class="QSpinBox" name="spinSteps">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -326,9 +390,15 @@ QPushButton:pressed{
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
         <widget class="QDoubleSpinBox" name="doubleAccuracy">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -392,7 +462,7 @@ QPushButton:pressed{
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>30</height>
+     <height>38</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">
