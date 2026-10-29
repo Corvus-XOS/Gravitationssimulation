@@ -18,9 +18,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDockWidget,
     QDoubleSpinBox, QFrame, QGraphicsView, QHBoxLayout,
-    QLabel, QMainWindow, QMenu, QMenuBar,
-    QPushButton, QSizePolicy, QSpacerItem, QSpinBox,
-    QStatusBar, QVBoxLayout, QWidget)
+    QLabel, QLineEdit, QMainWindow, QMenu,
+    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
+    QSpinBox, QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -28,24 +28,27 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(850, 850)
         MainWindow.setMinimumSize(QSize(850, 850))
-        MainWindow.setMaximumSize(QSize(100000, 16777215))
+        MainWindow.setMaximumSize(QSize(16777215, 16777215))
         self.actionStart_Stop = QAction(MainWindow)
         self.actionStart_Stop.setObjectName(u"actionStart_Stop")
         icon = QIcon(QIcon.fromTheme(u"media-playback-start"))
         self.actionStart_Stop.setIcon(icon)
-        self.actionElemente = QAction(MainWindow)
-        self.actionElemente.setObjectName(u"actionElemente")
-        self.actionElemente.setCheckable(True)
-        icon1 = QIcon(QIcon.fromTheme(u"mail-mark-important"))
-        self.actionElemente.setIcon(icon1)
-        self.actionFrag_Shannon = QAction(MainWindow)
-        self.actionFrag_Shannon.setObjectName(u"actionFrag_Shannon")
-        icon2 = QIcon(QIcon.fromTheme(u"system-search"))
-        self.actionFrag_Shannon.setIcon(icon2)
         self.actionGithub_Repo = QAction(MainWindow)
         self.actionGithub_Repo.setObjectName(u"actionGithub_Repo")
-        icon3 = QIcon(QIcon.fromTheme(u"applications-development"))
-        self.actionGithub_Repo.setIcon(icon3)
+        icon1 = QIcon(QIcon.fromTheme(u"applications-development"))
+        self.actionGithub_Repo.setIcon(icon1)
+        self.actionWas_macht_dieser_Link = QAction(MainWindow)
+        self.actionWas_macht_dieser_Link.setObjectName(u"actionWas_macht_dieser_Link")
+        icon2 = QIcon(QIcon.fromTheme(u"dialog-question"))
+        self.actionWas_macht_dieser_Link.setIcon(icon2)
+        self.actionDock = QAction(MainWindow)
+        self.actionDock.setObjectName(u"actionDock")
+        icon3 = QIcon(QIcon.fromTheme(u"applications-system"))
+        self.actionDock.setIcon(icon3)
+        self.actionAddElement = QAction(MainWindow)
+        self.actionAddElement.setObjectName(u"actionAddElement")
+        icon4 = QIcon(QIcon.fromTheme(u"list-add"))
+        self.actionAddElement.setIcon(icon4)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout_2 = QHBoxLayout(self.centralwidget)
@@ -64,7 +67,7 @@ class Ui_MainWindow(object):
         self.dockWidget = QDockWidget(MainWindow)
         self.dockWidget.setObjectName(u"dockWidget")
         self.dockWidget.setEnabled(True)
-        self.dockWidget.setMinimumSize(QSize(175, 760))
+        self.dockWidget.setMinimumSize(QSize(175, 776))
         self.dockWidget.setMaximumSize(QSize(175, 524287))
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
@@ -129,12 +132,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.labelMass)
 
-        self.spinMass = QSpinBox(self.dockWidgetContents)
-        self.spinMass.setObjectName(u"spinMass")
-        self.spinMass.setMaximumSize(QSize(50, 16777215))
-        self.spinMass.setMaximum(999)
+        self.lineEditMasse = QLineEdit(self.dockWidgetContents)
+        self.lineEditMasse.setObjectName(u"lineEditMasse")
+        self.lineEditMasse.setMinimumSize(QSize(100, 0))
+        self.lineEditMasse.setMaximumSize(QSize(100, 16777215))
 
-        self.verticalLayout.addWidget(self.spinMass, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.verticalLayout.addWidget(self.lineEditMasse, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.labelVelo = QLabel(self.dockWidgetContents)
         self.labelVelo.setObjectName(u"labelVelo")
@@ -144,7 +147,8 @@ class Ui_MainWindow(object):
 
         self.spinVelo = QSpinBox(self.dockWidgetContents)
         self.spinVelo.setObjectName(u"spinVelo")
-        self.spinVelo.setMaximumSize(QSize(50, 16777215))
+        self.spinVelo.setMinimumSize(QSize(100, 0))
+        self.spinVelo.setMaximumSize(QSize(100, 16777215))
 
         self.verticalLayout.addWidget(self.spinVelo, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -156,7 +160,8 @@ class Ui_MainWindow(object):
 
         self.spinDegree = QSpinBox(self.dockWidgetContents)
         self.spinDegree.setObjectName(u"spinDegree")
-        self.spinDegree.setMaximumSize(QSize(50, 16777215))
+        self.spinDegree.setMinimumSize(QSize(100, 0))
+        self.spinDegree.setMaximumSize(QSize(100, 16777215))
         self.spinDegree.setMaximum(360)
 
         self.verticalLayout.addWidget(self.spinDegree, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -170,28 +175,37 @@ class Ui_MainWindow(object):
         self.horizontalLayout_d2.setObjectName(u"horizontalLayout_d2")
         self.labelX = QLabel(self.dockWidgetContents)
         self.labelX.setObjectName(u"labelX")
+        self.labelX.setMaximumSize(QSize(10, 16777215))
 
         self.horizontalLayout_d2.addWidget(self.labelX)
 
-        self.spinXPos = QSpinBox(self.dockWidgetContents)
+        self.spinXPos = QDoubleSpinBox(self.dockWidgetContents)
         self.spinXPos.setObjectName(u"spinXPos")
-        self.spinXPos.setMaximum(1000)
+        self.spinXPos.setMinimumSize(QSize(100, 0))
+        self.spinXPos.setMaximumSize(QSize(100, 16777215))
 
         self.horizontalLayout_d2.addWidget(self.spinXPos)
 
-        self.labelY = QLabel(self.dockWidgetContents)
-        self.labelY.setObjectName(u"labelY")
-
-        self.horizontalLayout_d2.addWidget(self.labelY)
-
-        self.spinYPos = QSpinBox(self.dockWidgetContents)
-        self.spinYPos.setObjectName(u"spinYPos")
-        self.spinYPos.setMaximum(1000)
-
-        self.horizontalLayout_d2.addWidget(self.spinYPos)
-
 
         self.verticalLayout.addLayout(self.horizontalLayout_d2)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.labelY = QLabel(self.dockWidgetContents)
+        self.labelY.setObjectName(u"labelY")
+        self.labelY.setMaximumSize(QSize(10, 16777215))
+
+        self.horizontalLayout_3.addWidget(self.labelY)
+
+        self.spinYPos = QDoubleSpinBox(self.dockWidgetContents)
+        self.spinYPos.setObjectName(u"spinYPos")
+        self.spinYPos.setMinimumSize(QSize(100, 0))
+        self.spinYPos.setMaximumSize(QSize(100, 16777215))
+
+        self.horizontalLayout_3.addWidget(self.spinYPos)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
 
         self.labelColor = QLabel(self.dockWidgetContents)
         self.labelColor.setObjectName(u"labelColor")
@@ -252,7 +266,8 @@ class Ui_MainWindow(object):
 
         self.spinSteps = QSpinBox(self.dockWidgetContents)
         self.spinSteps.setObjectName(u"spinSteps")
-        self.spinSteps.setMaximumSize(QSize(50, 16777215))
+        self.spinSteps.setMinimumSize(QSize(100, 0))
+        self.spinSteps.setMaximumSize(QSize(100, 16777215))
 
         self.verticalLayout.addWidget(self.spinSteps, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -263,7 +278,8 @@ class Ui_MainWindow(object):
 
         self.doubleAccuracy = QDoubleSpinBox(self.dockWidgetContents)
         self.doubleAccuracy.setObjectName(u"doubleAccuracy")
-        self.doubleAccuracy.setMaximumSize(QSize(50, 16777215))
+        self.doubleAccuracy.setMinimumSize(QSize(100, 0))
+        self.doubleAccuracy.setMaximumSize(QSize(100, 16777215))
 
         self.verticalLayout.addWidget(self.doubleAccuracy, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -304,7 +320,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 850, 30))
+        self.menuBar.setGeometry(QRect(0, 0, 850, 38))
         self.menuSimulation = QMenu(self.menuBar)
         self.menuSimulation.setObjectName(u"menuSimulation")
         self.menuHilfe = QMenu(self.menuBar)
@@ -321,8 +337,9 @@ class Ui_MainWindow(object):
         self.menuBar.addAction(self.menuHilfe.menuAction())
         self.menuSimulation.addAction(self.actionStart_Stop)
         self.menuSimulation.addSeparator()
-        self.menuSimulation.addAction(self.actionElemente)
-        self.menuHilfe.addAction(self.actionFrag_Shannon)
+        self.menuSimulation.addAction(self.actionDock)
+        self.menuSimulation.addAction(self.actionAddElement)
+        self.menuHilfe.addAction(self.actionWas_macht_dieser_Link)
         self.menuHilfe.addSeparator()
         self.menuHilfe.addAction(self.actionGithub_Repo)
 
@@ -340,12 +357,16 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(shortcut)
         self.actionStart_Stop.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+R", None))
 #endif // QT_CONFIG(shortcut)
-        self.actionElemente.setText(QCoreApplication.translate("MainWindow", u"Elemente/ Sim", None))
-#if QT_CONFIG(shortcut)
-        self.actionElemente.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+E", None))
-#endif // QT_CONFIG(shortcut)
-        self.actionFrag_Shannon.setText(QCoreApplication.translate("MainWindow", u"Frag Shannon", None))
         self.actionGithub_Repo.setText(QCoreApplication.translate("MainWindow", u"Github-Repo", None))
+        self.actionWas_macht_dieser_Link.setText(QCoreApplication.translate("MainWindow", u"Was macht dieser Link?", None))
+        self.actionDock.setText(QCoreApplication.translate("MainWindow", u"Dock", None))
+#if QT_CONFIG(shortcut)
+        self.actionDock.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+E", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionAddElement.setText(QCoreApplication.translate("MainWindow", u"Element hinzuf\u00fcgen", None))
+#if QT_CONFIG(shortcut)
+        self.actionAddElement.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+A", None))
+#endif // QT_CONFIG(shortcut)
         self.labelElemSet.setText(QCoreApplication.translate("MainWindow", u"Element", None))
         self.pushCreate.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.pushDelete.setText(QCoreApplication.translate("MainWindow", u"-", None))

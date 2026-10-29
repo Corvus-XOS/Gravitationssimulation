@@ -18,7 +18,7 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>100000</width>
+    <width>16777215</width>
     <height>16777215</height>
    </size>
   </property>
@@ -46,7 +46,7 @@
    <property name="minimumSize">
     <size>
      <width>175</width>
-     <height>760</height>
+     <height>776</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -142,15 +142,18 @@ QPushButton:pressed{
         </widget>
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
-        <widget class="QSpinBox" name="spinMass">
-         <property name="maximumSize">
+        <widget class="QLineEdit" name="lineEditMasse">
+         <property name="minimumSize">
           <size>
-           <width>50</width>
-           <height>16777215</height>
+           <width>100</width>
+           <height>0</height>
           </size>
          </property>
-         <property name="maximum">
-          <number>999</number>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -166,9 +169,15 @@ QPushButton:pressed{
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
         <widget class="QSpinBox" name="spinVelo">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -186,9 +195,15 @@ QPushButton:pressed{
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
         <widget class="QSpinBox" name="spinDegree">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -208,29 +223,63 @@ QPushButton:pressed{
         <layout class="QHBoxLayout" name="horizontalLayout_d2">
          <item>
           <widget class="QLabel" name="labelX">
+           <property name="maximumSize">
+            <size>
+             <width>10</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>X</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="spinXPos">
-           <property name="maximum">
-            <number>1000</number>
+          <widget class="QDoubleSpinBox" name="spinXPos">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>16777215</height>
+            </size>
            </property>
           </widget>
          </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QLabel" name="labelY">
+           <property name="maximumSize">
+            <size>
+             <width>10</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="text">
             <string>Y</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="spinYPos">
-           <property name="maximum">
-            <number>1000</number>
+          <widget class="QDoubleSpinBox" name="spinYPos">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>16777215</height>
+            </size>
            </property>
           </widget>
          </item>
@@ -309,9 +358,15 @@ QPushButton:pressed{
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
         <widget class="QSpinBox" name="spinSteps">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -326,9 +381,15 @@ QPushButton:pressed{
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
         <widget class="QDoubleSpinBox" name="doubleAccuracy">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
-           <width>50</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -392,7 +453,7 @@ QPushButton:pressed{
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>30</height>
+     <height>38</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">
@@ -401,13 +462,14 @@ QPushButton:pressed{
     </property>
     <addaction name="actionStart_Stop"/>
     <addaction name="separator"/>
-    <addaction name="actionElemente"/>
+    <addaction name="actionDock"/>
+    <addaction name="actionAddElement"/>
    </widget>
    <widget class="QMenu" name="menuHilfe">
     <property name="title">
      <string>Hilfe</string>
     </property>
-    <addaction name="actionFrag_Shannon"/>
+    <addaction name="actionWas_macht_dieser_Link"/>
     <addaction name="separator"/>
     <addaction name="actionGithub_Repo"/>
    </widget>
@@ -426,34 +488,42 @@ QPushButton:pressed{
     <string>Ctrl+Shift+R</string>
    </property>
   </action>
-  <action name="actionElemente">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset theme="mail-mark-important"/>
-   </property>
-   <property name="text">
-    <string>Elemente/ Sim</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+E</string>
-   </property>
-  </action>
-  <action name="actionFrag_Shannon">
-   <property name="icon">
-    <iconset theme="system-search"/>
-   </property>
-   <property name="text">
-    <string>Frag Shannon</string>
-   </property>
-  </action>
   <action name="actionGithub_Repo">
    <property name="icon">
     <iconset theme="applications-development"/>
    </property>
    <property name="text">
     <string>Github-Repo</string>
+   </property>
+  </action>
+  <action name="actionWas_macht_dieser_Link">
+   <property name="icon">
+    <iconset theme="dialog-question"/>
+   </property>
+   <property name="text">
+    <string>Was macht dieser Link?</string>
+   </property>
+  </action>
+  <action name="actionDock">
+   <property name="icon">
+    <iconset theme="applications-system"/>
+   </property>
+   <property name="text">
+    <string>Dock</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+E</string>
+   </property>
+  </action>
+  <action name="actionAddElement">
+   <property name="icon">
+    <iconset theme="list-add"/>
+   </property>
+   <property name="text">
+    <string>Element hinzufügen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+A</string>
    </property>
   </action>
  </widget>

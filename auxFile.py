@@ -1,8 +1,10 @@
 #Contains auxillary functions and classes for main.py
 from PySide6.QtWidgets import QDialog
 
-from Ui_Name_Dialog import Ui_NameDialog
+#Namen anpassen
 from Ui_Delete_Dialog import Ui_DeleteDialog
+from Ui_Fehlermeldung import Ui_Fehlermeldung
+from Ui_Name_Dialog import Ui_NameDialog
 
 
 class MassObject:
@@ -37,7 +39,7 @@ class MassObject:
         return self.__color
     
     def setColor(self, newColor):
-        validColors = ["schwarz", "blau", "grün", "rot", "blau", "gelb", "lila"]
+        validColors = ["black", "blue", "green", "red", "yellow", "purple"] 
         if newColor.lower() in validColors:
             self.__color = newColor
     
@@ -72,6 +74,9 @@ class SetNameDialog(QDialog):
             if obj.getName() == name:
                 self.ui.labelError.setText("Die Bezeichnung ist bereits vergeben")
                 return
+        if name == "":
+            self.ui.labelError.setText("Ein leerer Eintrag ist nicht erlaubt")
+            return
         self.planetList.append(MassObject(name))
         self.ui.labelError.setVisible(False)
         self.success = True
@@ -94,6 +99,19 @@ class DeleteDialog(QDialog):
     
     def delete(self):
         self.accept()
+    
+    def abort(self):
+        self.close()
+
+class Fehlermeldung(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_Fehlermeldung()
+        self.ui.setupUi(self)
+        self.text = "Eingabe ist keine Zahl"
+        self.ui.labelDelete.setText(self.text)
+
+        self.ui.pushDiscard.clicked.connect(self.abort)
     
     def abort(self):
         self.close()

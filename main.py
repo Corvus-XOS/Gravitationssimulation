@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import sys
+import webbrowser
+from webbrowser import open
 
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QBrush, QPen, QColor, QPainter
@@ -14,13 +16,6 @@ COLORS = ["red", "green", "blue"]
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
-    QDockWidget,
-    QDoubleSpinBox,
-    QGraphicsView,
-    QLabel,
-    QLineEdit,
-    QListWidget,
-    QListWidgetItem,
     QMainWindow,
     QMenu,
     QPushButton,
@@ -30,7 +25,7 @@ from PySide6.QtWidgets import (
     QGraphicsScene,
 )
 
-from auxFile import MassObject, SetNameDialog, DeleteDialog
+from auxFile import DeleteDialog, Fehlermeldung, MassObject, SetNameDialog
 from ui_Main_Window import Ui_MainWindow
 
 planetList : list[MassObject] = []
@@ -57,9 +52,10 @@ class MainWindow(QMainWindow):
         self.simAcc : float = 1.0
 
         self.index = 0
+        self.startStop = False #Notwendig für QAction Start/Stop, True für Sim läuft
 
         self.ui.comboElement.currentTextChanged.connect(self.textChange)
-        self.ui.comboColor.addItems(["schwarz", "blau", "grün", "rot", "blau", "gelb", "lila"])
+        self.ui.comboColor.addItems(["black", "blue", "green", "red", "yellow", "purple"] )
 
         self.ui.pushCreate.clicked.connect(self.addElem)
         self.ui.pushSetElem.clicked.connect(self.acceptChange)
@@ -69,6 +65,12 @@ class MainWindow(QMainWindow):
         self.ui.pushStopSim.clicked.connect(self.stopSim)
 
         self.ui.comboElement.currentIndexChanged.connect(self.textChange)
+
+        self.ui.actionStart_Stop.triggered.connect(self.toggleSim)
+        self.ui.actionDock.triggered.connect(self.toggleDock)
+        self.ui.actionGithub_Repo.triggered.connect(self.openRepo)
+        self.ui.actionWas_macht_dieser_Link.triggered.connect(self.openRandomLink)
+        self.ui.actionAddElement.triggered.connect(self.addElem)
 
         #Elemente für die Parameter der Simulation:
         #Schritte p. sek.: self.ui.spinSteps (SpinBox)
@@ -135,7 +137,7 @@ class MainWindow(QMainWindow):
                 self.ui.checkAktiv.setCheckState(Qt.CheckState.Checked)
             else:
                 self.ui.checkAktiv.setCheckState(Qt.CheckState.Unchecked)
-            self.ui.spinMass.setValue(planet.getMass())
+            self.ui.lineEditMasse.setText(str(planet.getMass()))
             self.ui.spinVelo.setValue(planet.getInVelo())
             self.ui.spinDegree.setValue(planet.getDegree())
             self.ui.spinXPos.setValue(planet.x_pos)
@@ -155,12 +157,14 @@ class MainWindow(QMainWindow):
         for obj in planetList:
             if obj.getName() == curText:
                 idx = planetList.index(obj)
-        # if self.ui.checkAktiv.checkState == Qt.CheckState.Checked:
-        #     planetList[idx].active = True
-        # else:
-        #     planetList[idx].active = False
+        try:
+            planetList[idx].setMass(float(self.ui.lineEditMasse.text()))
+        except ValueError:
+            fehlermeldung = Fehlermeldung()
+            fehlermeldung.exec()
+            return
         planetList[idx].active = self.ui.checkAktiv.isChecked()
-        planetList[idx].setMass(self.ui.spinMass.value())
+        planetList[idx].setMass(float(self.ui.lineEditMasse.text()))
         planetList[idx].setInVelo(self.ui.spinVelo.value())
         planetList[idx].setDegree(self.ui.spinDegree.value())
         planetList[idx].x_pos = self.ui.spinXPos.value()
@@ -190,6 +194,24 @@ class MainWindow(QMainWindow):
         self.timer.stop()
         print("stop")
         #------------------------
+    
+    def toggleSim(self):
+        if self.startStop == True:
+            self.stopSim()
+        else:
+            self.startSim()
+    
+    def toggleDock(self):
+        if self.ui.dockWidget.isVisible():
+            self.ui.dockWidget.setVisible(False)
+        else:
+            self.ui.dockWidget.setVisible(True)
+
+    def openRepo(self):
+        webbrowser.open("https://github.com/Corvus-XOS/Zimbos-Python")
+
+    def openRandomLink(self):
+        webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
     def step(self):
             for _ in range(STEPS_PER_FRAME):
@@ -211,6 +233,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     window = MainWindow(planetList, workingPlanetList=workingPlanetList)
+    window.showMaximized()
     window.show()
 
     sys.exit(app.exec())

@@ -1,8 +1,9 @@
 # Frontend Repo Roadmap:
     - Erste lauffähige Ui: ✅
     - Dialog für Element erstellen und löschen: ✅
-    - Dock einbinden: WIP, aber optional
-    - Menü einbinden: WIP
+    - Dock einbinden: ✅
+    - Menü einbinden: ✅
+    - Fehlersuche: WIP
 
 # Elemente für Backend
     - Start: pushStartSim (Pushbutton), verknüpft mit startSim()
