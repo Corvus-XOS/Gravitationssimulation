@@ -1,0 +1,1 @@
+pyside6-uic.exe .\ui_qtview_test.ui -o ui_qtview.py
