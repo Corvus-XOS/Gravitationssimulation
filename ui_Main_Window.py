@@ -18,9 +18,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDockWidget,
     QDoubleSpinBox, QFrame, QGraphicsView, QHBoxLayout,
-    QLabel, QMainWindow, QMenu, QMenuBar,
-    QPushButton, QSizePolicy, QSpacerItem, QSpinBox,
-    QStatusBar, QVBoxLayout, QWidget)
+    QLabel, QLineEdit, QMainWindow, QMenu,
+    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
+    QSpinBox, QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -67,7 +67,7 @@ class Ui_MainWindow(object):
         self.dockWidget = QDockWidget(MainWindow)
         self.dockWidget.setObjectName(u"dockWidget")
         self.dockWidget.setEnabled(True)
-        self.dockWidget.setMinimumSize(QSize(175, 760))
+        self.dockWidget.setMinimumSize(QSize(175, 776))
         self.dockWidget.setMaximumSize(QSize(175, 524287))
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
@@ -132,13 +132,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.labelMass)
 
-        self.spinMass = QSpinBox(self.dockWidgetContents)
-        self.spinMass.setObjectName(u"spinMass")
-        self.spinMass.setMinimumSize(QSize(100, 0))
-        self.spinMass.setMaximumSize(QSize(100, 16777215))
-        self.spinMass.setMaximum(999)
+        self.lineEditMasse = QLineEdit(self.dockWidgetContents)
+        self.lineEditMasse.setObjectName(u"lineEditMasse")
+        self.lineEditMasse.setMinimumSize(QSize(100, 0))
+        self.lineEditMasse.setMaximumSize(QSize(100, 16777215))
 
-        self.verticalLayout.addWidget(self.spinMass, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.verticalLayout.addWidget(self.lineEditMasse, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.labelVelo = QLabel(self.dockWidgetContents)
         self.labelVelo.setObjectName(u"labelVelo")
@@ -180,11 +179,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_d2.addWidget(self.labelX)
 
-        self.spinXPos = QSpinBox(self.dockWidgetContents)
+        self.spinXPos = QDoubleSpinBox(self.dockWidgetContents)
         self.spinXPos.setObjectName(u"spinXPos")
         self.spinXPos.setMinimumSize(QSize(100, 0))
         self.spinXPos.setMaximumSize(QSize(100, 16777215))
-        self.spinXPos.setMaximum(1000)
 
         self.horizontalLayout_d2.addWidget(self.spinXPos)
 
@@ -199,11 +197,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.labelY)
 
-        self.spinYPos = QSpinBox(self.dockWidgetContents)
+        self.spinYPos = QDoubleSpinBox(self.dockWidgetContents)
         self.spinYPos.setObjectName(u"spinYPos")
         self.spinYPos.setMinimumSize(QSize(100, 0))
         self.spinYPos.setMaximumSize(QSize(100, 16777215))
-        self.spinYPos.setMaximum(1000)
 
         self.horizontalLayout_3.addWidget(self.spinYPos)
 

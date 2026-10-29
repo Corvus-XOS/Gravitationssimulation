@@ -46,7 +46,7 @@
    <property name="minimumSize">
     <size>
      <width>175</width>
-     <height>760</height>
+     <height>776</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -142,7 +142,7 @@ QPushButton:pressed{
         </widget>
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
-        <widget class="QSpinBox" name="spinMass">
+        <widget class="QLineEdit" name="lineEditMasse">
          <property name="minimumSize">
           <size>
            <width>100</width>
@@ -154,9 +154,6 @@ QPushButton:pressed{
            <width>100</width>
            <height>16777215</height>
           </size>
-         </property>
-         <property name="maximum">
-          <number>999</number>
          </property>
         </widget>
        </item>
@@ -238,7 +235,7 @@ QPushButton:pressed{
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="spinXPos">
+          <widget class="QDoubleSpinBox" name="spinXPos">
            <property name="minimumSize">
             <size>
              <width>100</width>
@@ -250,9 +247,6 @@ QPushButton:pressed{
              <width>100</width>
              <height>16777215</height>
             </size>
-           </property>
-           <property name="maximum">
-            <number>1000</number>
            </property>
           </widget>
          </item>
@@ -274,7 +268,7 @@ QPushButton:pressed{
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="spinYPos">
+          <widget class="QDoubleSpinBox" name="spinYPos">
            <property name="minimumSize">
             <size>
              <width>100</width>
@@ -286,9 +280,6 @@ QPushButton:pressed{
              <width>100</width>
              <height>16777215</height>
             </size>
-           </property>
-           <property name="maximum">
-            <number>1000</number>
            </property>
           </widget>
          </item>

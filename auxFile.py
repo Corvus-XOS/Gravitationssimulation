@@ -1,15 +1,17 @@
 #Contains auxillary functions and classes for main.py
 from PySide6.QtWidgets import QDialog
+
 #Namen anpassen
 from Ui_Delete_Dialog import Ui_DeleteDialog
+from Ui_Fehlermeldung import Ui_Fehlermeldung
 from Ui_Name_Dialog import Ui_NameDialog
 
 
 class MassObject:
     def __init__(self, name):
-        self.__mass : int = 0
-        self.x_pos : int = 0
-        self.y_pos : int = 0
+        self.__mass : float = 0
+        self.x_pos : float = 0
+        self.y_pos : float = 0
         self.__degree : float = 0.0
         self.x_spd : float = 0.0
         self.y_spd : float = 0.0
@@ -24,7 +26,7 @@ class MassObject:
         return self.__mass
     
     def setMass(self, newMass):
-        self.__mass = int(newMass)
+        self.__mass = float(newMass)
     
     def getDegree(self):
         return self.__degree
@@ -37,7 +39,7 @@ class MassObject:
         return self.__color
     
     def setColor(self, newColor):
-        validColors = ["schwarz", "blau", "grün", "rot", "blau", "gelb", "lila"]
+        validColors = ["black", "blue", "green", "red", "yellow", "purple"] 
         if newColor.lower() in validColors:
             self.__color = newColor
     
@@ -97,6 +99,19 @@ class DeleteDialog(QDialog):
     
     def delete(self):
         self.accept()
+    
+    def abort(self):
+        self.close()
+
+class Fehlermeldung(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_Fehlermeldung()
+        self.ui.setupUi(self)
+        self.text = "Eingabe ist keine Zahl"
+        self.ui.labelDelete.setText(self.text)
+
+        self.ui.pushDiscard.clicked.connect(self.abort)
     
     def abort(self):
         self.close()
