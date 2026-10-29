@@ -9,7 +9,7 @@ from Ui_Name_Dialog import Ui_NameDialog
 
 class MassObject:
     def __init__(self, name):
-        self.mass : float = 0
+        self.mass : float = 1
         self.x_pos : float = 0
         self.y_pos : float = 0
         self.__degree : float = 0.0

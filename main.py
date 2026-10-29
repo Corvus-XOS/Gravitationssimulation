@@ -7,10 +7,11 @@ from webbrowser import open
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QBrush, QPen, QColor, QPainter
 import physics_core as pc
+import math
 
 STEPS_PER_FRAME = 100
 RADIUS = 3
-COLORS = ["red", "green", "blue"]
+# COLORS = ["red", "green", "blue"]
 
 #from PySide6.QtLocation import QPlaceUser
 from PySide6.QtWidgets import (
@@ -28,8 +29,23 @@ from PySide6.QtWidgets import (
 from auxFile import DeleteDialog, Fehlermeldung, MassObject, SetNameDialog
 from ui_Main_Window import Ui_MainWindow
 
-planetList : list[MassObject] = []
+##############################################################################
 
+p1 = MassObject("p1")
+p2 = MassObject("p2")
+
+p1.mass = 1e15
+p1.setColor("purple")
+
+p2.mass = 1e0
+p2.y_pos = 20
+p2.x_spd = 40
+p2.setColor("green")
+
+# planetList : list[MassObject] = [p1, p2]
+# workingPlanetList : list[MassObject] = planetList
+
+planetList : list[MassObject] = []
 workingPlanetList : list[MassObject] = []
 
 # planet1 = MassObject(name="p1", x_pos=50, y_pos=0, mass=1e15, speed=30, degree=150)
@@ -37,6 +53,8 @@ workingPlanetList : list[MassObject] = []
 # planet3 = MassObject(name="p3", x_pos=-25, y_pos=-43.3, mass=1e15, speed=30, degree=30)
 
 # planet_arr = [planet1, planet2, planet3]
+
+##############################################################################
 
 class MainWindow(QMainWindow):
     def __init__(self, planetList : list[MassObject], workingPlanetList : list[MassObject]):
@@ -75,18 +93,16 @@ class MainWindow(QMainWindow):
         #Elemente für die Parameter der Simulation:
         #Schritte p. sek.: self.ui.spinSteps (SpinBox)
         #Genauigkeit: self.ui.doubleAccuracy (DoubleSpinBox)
-        self.scene = QGraphicsScene(-300, -300, 600, 600)
-        self.ui.graphicsView.setScene(self.scene)
-        self.ui.graphicsView.setRenderHint(QPainter.Antialiasing)
+
         self.ui.graphicsView.scale(1, -1)
 
-        self.items, self.last_pos = [], []
-        for p, c in zip(workingPlanetList, COLORS):
-            item = self.scene.addEllipse(-RADIUS, -RADIUS, 2*RADIUS, 2*RADIUS, QPen(Qt.NoPen), QBrush(QColor(c)))
-            item.setPos(p.x_pos, p.y_pos)
-            item.setZValue(1)
-            self.items.append(item)
-            self.last_pos.append((p.x_pos, p.y_pos))
+        # self.items, self.last_pos = [], []
+        # for i, p in enumerate(workingPlanetList):
+        #     item = self.scene.addEllipse(-RADIUS, -RADIUS, 2*RADIUS, 2*RADIUS, QPen(Qt.NoPen), QBrush(QColor(p.getColor())))
+        #     item.setPos(p.x_pos, p.y_pos)
+        #     item.setZValue(1)
+        #     self.items.append(item)
+        #     self.last_pos.append((p.x_pos, p.y_pos))
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.step)
@@ -137,7 +153,7 @@ class MainWindow(QMainWindow):
                 self.ui.checkAktiv.setCheckState(Qt.CheckState.Checked)
             else:
                 self.ui.checkAktiv.setCheckState(Qt.CheckState.Unchecked)
-            self.ui.lineEditMasse.setText(str(planet.getMass()))
+            self.ui.lineEditMasse.setText(f"{planet.getMass():.2e}")
             self.ui.spinVelo.setValue(planet.getInVelo())
             self.ui.spinDegree.setValue(planet.getDegree())
             self.ui.spinXPos.setValue(planet.x_pos)
@@ -167,15 +183,28 @@ class MainWindow(QMainWindow):
         planetList[idx].setMass(float(self.ui.lineEditMasse.text()))
         planetList[idx].setInVelo(self.ui.spinVelo.value())
         planetList[idx].setDegree(self.ui.spinDegree.value())
+        rad = math.radians(planetList[idx].getDegree())
+        planetList[idx].x_spd = planetList[idx].getInVelo() * math.cos(rad)
+        planetList[idx].y_spd = planetList[idx].getInVelo() * math.sin(rad)
         planetList[idx].x_pos = self.ui.spinXPos.value()
         planetList[idx].y_pos = self.ui.spinYPos.value()
         planetList[idx].setColor(self.ui.comboColor.currentText())
-        workingPlanetList = []
+
+        workingPlanetList.clear()
         for i in range(0, len(planetList)):
             if planetList[i].active:
                 workingPlanetList.append(planetList[i])
         print(workingPlanetList)
         self.ui.statusBar.showMessage("Daten übernommen", 50000)
+
+        self.updateView()
+        self.items, self.last_pos = [], []
+        for i, p in enumerate(workingPlanetList):
+            item = self.scene.addEllipse(-RADIUS, -RADIUS, 2*RADIUS, 2*RADIUS, QPen(Qt.NoPen), QBrush(QColor(p.getColor())))
+            item.setPos(p.x_pos, p.y_pos)
+            item.setZValue(1)
+            self.items.append(item)
+            self.last_pos.append((p.x_pos, p.y_pos))
 
     def discardChange(self):
         self.textChange()
@@ -219,9 +248,19 @@ class MainWindow(QMainWindow):
     
             for i, p in enumerate(workingPlanetList):
                 x0, y0 = self.last_pos[i]
-                self.scene.addLine(x0, y0, p.x_pos, p.y_pos, QPen(QColor(COLORS[i])))
+                self.scene.addLine(x0, y0, p.x_pos, p.y_pos, QPen(QColor(p.getColor())))
                 self.items[i].setPos(p.x_pos, p.y_pos)
                 self.last_pos[i] = (p.x_pos, p.y_pos)
+
+    # Fenstergröße anpassen
+    def updateView(self):
+        y = self.ui.graphicsView.height() / 2
+        x = self.ui.graphicsView.width() / 2
+
+        self.scene = QGraphicsScene(-x, -y, 2*x, 2*y)
+        self.ui.graphicsView.setScene(self.scene)
+        self.ui.graphicsView.setRenderHint(QPainter.Antialiasing)
+
 
 
 
@@ -233,7 +272,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     window = MainWindow(planetList, workingPlanetList=workingPlanetList)
-    window.showMaximized()
+    # window.showMaximized()
     window.show()
 
     sys.exit(app.exec())

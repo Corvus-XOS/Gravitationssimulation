@@ -23,6 +23,7 @@ dt = 1e-3 # s
 #         self.color = color
 
 def update(arr: list["MassObject"], n: int):
+    # print(arr)
     for i in range(0, n - 1):
         for j in range(i + 1, n):
             # Berechnung der Kräfte
@@ -43,6 +44,7 @@ def update(arr: list["MassObject"], n: int):
 
     # Aktualisierung der Positionen
     update_pos(arr=arr, n=n)
+    # print(arr[0].x_pos, arr[0].y_pos)
 
 
 
