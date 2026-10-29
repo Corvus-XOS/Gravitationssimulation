@@ -1,1 +1,1 @@
-pyside6-uic.exe .\ui_qtview_test.ui -o ui_qtview.py
+pyside6-uic.exe .\ui_Main_Window.ui -o ui_Main_Window.py

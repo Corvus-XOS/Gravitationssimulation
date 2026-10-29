@@ -7,7 +7,7 @@ import math
 from auxFile import MassObject
 
 G = 6.67430e-11 # m^3 / kg * s^2
-dt = 1e-3 # s
+# dt = 1e-3 # s
 
 
 # class Planet:
@@ -22,7 +22,7 @@ dt = 1e-3 # s
 #         self.dy_spd = 0.0 # m/s
 #         self.color = color
 
-def update(arr: list["MassObject"], n: int):
+def update(arr: list["MassObject"], n: int, dt: float):
     # print(arr)
     for i in range(0, n - 1):
         for j in range(i + 1, n):
@@ -43,13 +43,13 @@ def update(arr: list["MassObject"], n: int):
             arr[j].dy_spd += dy_spd / arr[j].mass
 
     # Aktualisierung der Positionen
-    update_pos(arr=arr, n=n)
+    update_pos(arr=arr, n=n, dt=dt)
     # print(arr[0].x_pos, arr[0].y_pos)
 
 
 
 
-def update_pos(arr: list["MassObject"], n: int):
+def update_pos(arr: list["MassObject"], n: int, dt: float):
     for i in range(0, n):
         arr[i].x_spd += arr[i].dx_spd
         arr[i].y_spd += arr[i].dy_spd

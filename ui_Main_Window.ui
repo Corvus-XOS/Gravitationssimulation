@@ -168,7 +168,13 @@ QPushButton:pressed{
         </widget>
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
-        <widget class="QSpinBox" name="spinVelo">
+        <widget class="QDoubleSpinBox" name="spinVelo">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>100</width>
@@ -180,6 +186,24 @@ QPushButton:pressed{
            <width>100</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="acceptDrops">
+          <bool>false</bool>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+         </property>
+         <property name="decimals">
+          <number>6</number>
+         </property>
+         <property name="minimum">
+          <double>-1000000000000.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>1000000000000.000000000000000</double>
          </property>
         </widget>
        </item>
@@ -194,7 +218,7 @@ QPushButton:pressed{
         </widget>
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
-        <widget class="QSpinBox" name="spinDegree">
+        <widget class="QDoubleSpinBox" name="spinDegree">
          <property name="minimumSize">
           <size>
            <width>100</width>
@@ -207,8 +231,17 @@ QPushButton:pressed{
            <height>16777215</height>
           </size>
          </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+         </property>
+         <property name="decimals">
+          <number>6</number>
+         </property>
+         <property name="minimum">
+          <double>-1000000000000.000000000000000</double>
+         </property>
          <property name="maximum">
-          <number>360</number>
+          <double>1000000000000.000000000000000</double>
          </property>
         </widget>
        </item>
@@ -248,6 +281,18 @@ QPushButton:pressed{
              <height>16777215</height>
             </size>
            </property>
+           <property name="buttonSymbols">
+            <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+           </property>
+           <property name="decimals">
+            <number>6</number>
+           </property>
+           <property name="minimum">
+            <double>-1000000000000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>1000000000000.000000000000000</double>
+           </property>
           </widget>
          </item>
         </layout>
@@ -280,6 +325,18 @@ QPushButton:pressed{
              <width>100</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="buttonSymbols">
+            <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+           </property>
+           <property name="decimals">
+            <number>6</number>
+           </property>
+           <property name="minimum">
+            <double>-1000000000000.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>1000000000000.000000000000000</double>
            </property>
           </widget>
          </item>
@@ -370,6 +427,12 @@ QPushButton:pressed{
            <height>16777215</height>
           </size>
          </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+         </property>
+         <property name="maximum">
+          <number>1000000000</number>
+         </property>
         </widget>
        </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
@@ -392,6 +455,15 @@ QPushButton:pressed{
            <width>100</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+         </property>
+         <property name="decimals">
+          <number>6</number>
+         </property>
+         <property name="maximum">
+          <double>1000000000000.000000000000000</double>
          </property>
         </widget>
        </item>
@@ -453,7 +525,7 @@ QPushButton:pressed{
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>38</height>
+     <height>33</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">

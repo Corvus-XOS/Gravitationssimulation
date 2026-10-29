@@ -10,7 +10,7 @@ import physics_core as pc
 import math
 
 STEPS_PER_FRAME = 100
-RADIUS = 3
+RADIUS = 6
 # COLORS = ["red", "green", "blue"]
 
 #from PySide6.QtLocation import QPlaceUser
@@ -93,8 +93,12 @@ class MainWindow(QMainWindow):
         #Elemente für die Parameter der Simulation:
         #Schritte p. sek.: self.ui.spinSteps (SpinBox)
         #Genauigkeit: self.ui.doubleAccuracy (DoubleSpinBox)
+        self.ui.doubleAccuracy.setValue(1e-3)
+        self.ui.spinSteps.setValue(100)
 
         self.ui.graphicsView.scale(1, -1)
+        self.ui.graphicsView.setBackgroundBrush(QBrush(QColor(0xdddddd)))
+        self.updateView()
 
         # self.items, self.last_pos = [], []
         # for i, p in enumerate(workingPlanetList):
@@ -243,8 +247,8 @@ class MainWindow(QMainWindow):
         webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
     def step(self):
-            for _ in range(STEPS_PER_FRAME):
-                pc.update(arr=workingPlanetList, n=len(workingPlanetList))
+            for _ in range(self.ui.spinSteps.value()):
+                pc.update(arr=workingPlanetList, n=len(workingPlanetList), dt=self.ui.doubleAccuracy.value())
     
             for i, p in enumerate(workingPlanetList):
                 x0, y0 = self.last_pos[i]

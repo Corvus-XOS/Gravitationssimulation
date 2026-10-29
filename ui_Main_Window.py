@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'ui_Main_Window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.11.2
+## Created by: Qt User Interface Compiler version 6.12.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -16,11 +16,12 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDockWidget,
-    QDoubleSpinBox, QFrame, QGraphicsView, QHBoxLayout,
-    QLabel, QLineEdit, QMainWindow, QMenu,
-    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
-    QSpinBox, QStatusBar, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QComboBox,
+    QDockWidget, QDoubleSpinBox, QFrame, QGraphicsView,
+    QHBoxLayout, QLabel, QLineEdit, QMainWindow,
+    QMenu, QMenuBar, QPushButton, QSizePolicy,
+    QSpacerItem, QSpinBox, QStatusBar, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -145,10 +146,21 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.labelVelo)
 
-        self.spinVelo = QSpinBox(self.dockWidgetContents)
+        self.spinVelo = QDoubleSpinBox(self.dockWidgetContents)
         self.spinVelo.setObjectName(u"spinVelo")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.spinVelo.sizePolicy().hasHeightForWidth())
+        self.spinVelo.setSizePolicy(sizePolicy)
         self.spinVelo.setMinimumSize(QSize(100, 0))
         self.spinVelo.setMaximumSize(QSize(100, 16777215))
+        self.spinVelo.setAcceptDrops(False)
+        self.spinVelo.setAutoFillBackground(False)
+        self.spinVelo.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.spinVelo.setDecimals(6)
+        self.spinVelo.setMinimum(-1000000000000.000000000000000)
+        self.spinVelo.setMaximum(1000000000000.000000000000000)
 
         self.verticalLayout.addWidget(self.spinVelo, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -158,11 +170,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.labelDegree)
 
-        self.spinDegree = QSpinBox(self.dockWidgetContents)
+        self.spinDegree = QDoubleSpinBox(self.dockWidgetContents)
         self.spinDegree.setObjectName(u"spinDegree")
         self.spinDegree.setMinimumSize(QSize(100, 0))
         self.spinDegree.setMaximumSize(QSize(100, 16777215))
-        self.spinDegree.setMaximum(360)
+        self.spinDegree.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.spinDegree.setDecimals(6)
+        self.spinDegree.setMinimum(-1000000000000.000000000000000)
+        self.spinDegree.setMaximum(1000000000000.000000000000000)
 
         self.verticalLayout.addWidget(self.spinDegree, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -183,6 +198,10 @@ class Ui_MainWindow(object):
         self.spinXPos.setObjectName(u"spinXPos")
         self.spinXPos.setMinimumSize(QSize(100, 0))
         self.spinXPos.setMaximumSize(QSize(100, 16777215))
+        self.spinXPos.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.spinXPos.setDecimals(6)
+        self.spinXPos.setMinimum(-1000000000000.000000000000000)
+        self.spinXPos.setMaximum(1000000000000.000000000000000)
 
         self.horizontalLayout_d2.addWidget(self.spinXPos)
 
@@ -201,6 +220,10 @@ class Ui_MainWindow(object):
         self.spinYPos.setObjectName(u"spinYPos")
         self.spinYPos.setMinimumSize(QSize(100, 0))
         self.spinYPos.setMaximumSize(QSize(100, 16777215))
+        self.spinYPos.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.spinYPos.setDecimals(6)
+        self.spinYPos.setMinimum(-1000000000000.000000000000000)
+        self.spinYPos.setMaximum(1000000000000.000000000000000)
 
         self.horizontalLayout_3.addWidget(self.spinYPos)
 
@@ -268,6 +291,8 @@ class Ui_MainWindow(object):
         self.spinSteps.setObjectName(u"spinSteps")
         self.spinSteps.setMinimumSize(QSize(100, 0))
         self.spinSteps.setMaximumSize(QSize(100, 16777215))
+        self.spinSteps.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.spinSteps.setMaximum(1000000000)
 
         self.verticalLayout.addWidget(self.spinSteps, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -280,6 +305,9 @@ class Ui_MainWindow(object):
         self.doubleAccuracy.setObjectName(u"doubleAccuracy")
         self.doubleAccuracy.setMinimumSize(QSize(100, 0))
         self.doubleAccuracy.setMaximumSize(QSize(100, 16777215))
+        self.doubleAccuracy.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.doubleAccuracy.setDecimals(6)
+        self.doubleAccuracy.setMaximum(1000000000000.000000000000000)
 
         self.verticalLayout.addWidget(self.doubleAccuracy, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -320,7 +348,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 850, 38))
+        self.menuBar.setGeometry(QRect(0, 0, 850, 33))
         self.menuSimulation = QMenu(self.menuBar)
         self.menuSimulation.setObjectName(u"menuSimulation")
         self.menuHilfe = QMenu(self.menuBar)
