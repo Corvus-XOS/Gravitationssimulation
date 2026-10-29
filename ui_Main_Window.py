@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'ui_Main_Window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.11.2
+## Created by: Qt User Interface Compiler version 6.12.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -18,9 +18,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDockWidget,
     QDoubleSpinBox, QFrame, QGraphicsView, QHBoxLayout,
-    QLabel, QMainWindow, QMenu, QMenuBar,
-    QPushButton, QSizePolicy, QSpacerItem, QSpinBox,
-    QStatusBar, QVBoxLayout, QWidget)
+    QLabel, QLineEdit, QMainWindow, QMenu,
+    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
+    QSpinBox, QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -132,13 +132,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.labelMass)
 
-        self.spinMass = QSpinBox(self.dockWidgetContents)
+        self.spinMass = QLineEdit(self.dockWidgetContents)
         self.spinMass.setObjectName(u"spinMass")
-        self.spinMass.setMinimumSize(QSize(100, 0))
-        self.spinMass.setMaximumSize(QSize(100, 16777215))
-        self.spinMass.setMaximum(999)
 
-        self.verticalLayout.addWidget(self.spinMass, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.verticalLayout.addWidget(self.spinMass)
 
         self.labelVelo = QLabel(self.dockWidgetContents)
         self.labelVelo.setObjectName(u"labelVelo")
@@ -323,7 +320,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 850, 38))
+        self.menuBar.setGeometry(QRect(0, 0, 850, 33))
         self.menuSimulation = QMenu(self.menuBar)
         self.menuSimulation.setObjectName(u"menuSimulation")
         self.menuHilfe = QMenu(self.menuBar)

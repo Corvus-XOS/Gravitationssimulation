@@ -12,7 +12,7 @@ from PySide6.QtWidgets import (
 )
 
 from auxFile import DeleteDialog, MassObject, SetNameDialog
-from Ui_Main_Window import Ui_MainWindow
+from ui_Main_Window import Ui_MainWindow
 
 planetList : list[MassObject] = []
 
@@ -100,7 +100,7 @@ class MainWindow(QMainWindow):
                 self.ui.checkAktiv.setCheckState(Qt.CheckState.Checked)
             else:
                 self.ui.checkAktiv.setCheckState(Qt.CheckState.Unchecked)
-            self.ui.spinMass.setValue(planet.getMass())
+            self.ui.spinMass.setText(str(planet.getMass()))
             self.ui.spinVelo.setValue(planet.getInVelo())
             self.ui.spinDegree.setValue(planet.getDegree())
             self.ui.spinXPos.setValue(planet.x_pos)
@@ -124,7 +124,7 @@ class MainWindow(QMainWindow):
             planetList[idx].active = True
         else:
             planetList[idx].active = False
-        planetList[idx].setMass(self.ui.spinMass.value())
+        planetList[idx].setMass(float(self.ui.spinMass.text()))
         planetList[idx].setInVelo(self.ui.spinVelo.value())
         planetList[idx].setDegree(self.ui.spinDegree.value())
         planetList[idx].x_pos = self.ui.spinXPos.value()
