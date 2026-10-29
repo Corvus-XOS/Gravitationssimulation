@@ -1,8 +1,8 @@
 #Contains auxillary functions and classes for main.py
 from PySide6.QtWidgets import QDialog
 
-from ui_Name_Dialog import Ui_NameDialog
 from Ui_Delete_Dialog import Ui_DeleteDialog
+from Ui_Name_Dialog import Ui_NameDialog
 
 
 class MassObject:
@@ -72,6 +72,9 @@ class SetNameDialog(QDialog):
             if obj.getName() == name:
                 self.ui.labelError.setText("Die Bezeichnung ist bereits vergeben")
                 return
+        if name == "":
+            self.ui.labelError.setText("Ein leerer Eintrag ist nicht erlaubt")
+            return
         self.planetList.append(MassObject(name))
         self.ui.labelError.setVisible(False)
         self.success = True

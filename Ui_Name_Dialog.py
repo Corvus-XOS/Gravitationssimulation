@@ -23,7 +23,7 @@ class Ui_NameDialog(object):
     def setupUi(self, NameDialog):
         if not NameDialog.objectName():
             NameDialog.setObjectName(u"NameDialog")
-        NameDialog.setWindowModality(Qt.WindowModality.WindowModal)
+        NameDialog.setWindowModality(Qt.WindowModality.ApplicationModal)
         NameDialog.resize(275, 150)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -87,6 +87,8 @@ class Ui_NameDialog(object):
 "QPushButton:pressed{\n"
 "	background-color: rgb(20, 150, 0);\n"
 "}")
+        self.pushAccept.setCheckable(False)
+        self.pushAccept.setAutoDefault(False)
 
         self.horizontalLayout.addWidget(self.pushAccept)
 
@@ -98,6 +100,9 @@ class Ui_NameDialog(object):
 
 
         self.retranslateUi(NameDialog)
+
+        self.pushAccept.setDefault(True)
+
 
         QMetaObject.connectSlotsByName(NameDialog)
     # setupUi

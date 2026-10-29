@@ -1,29 +1,17 @@
 #!/usr/bin/env python3
 
 import sys
+import webbrowser
+from webbrowser import open
 
 from PySide6.QtCore import Qt
-
-#from PySide6.QtLocation import QPlaceUser
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
-    QDockWidget,
-    QDoubleSpinBox,
-    QGraphicsView,
-    QLabel,
-    QLineEdit,
-    QListWidget,
-    QListWidgetItem,
     QMainWindow,
-    QMenu,
-    QPushButton,
-    QSpinBox,
-    QStatusBar,
-    QWidgetAction,
 )
 
-from auxFile import MassObject, SetNameDialog, DeleteDialog
+from auxFile import DeleteDialog, MassObject, SetNameDialog
 from ui_Main_Window import Ui_MainWindow
 
 planetList : list[MassObject] = []
@@ -41,6 +29,7 @@ class MainWindow(QMainWindow):
         self.simAcc : float = 1.0
 
         self.index = 0
+        self.startStop = False #Notwendig für QAction Start/Stop, True für Sim läuft
 
         self.ui.comboElement.currentTextChanged.connect(self.textChange)
         self.ui.comboColor.addItems(["schwarz", "blau", "grün", "rot", "blau", "gelb", "lila"])
@@ -54,9 +43,16 @@ class MainWindow(QMainWindow):
 
         self.ui.comboElement.currentIndexChanged.connect(self.textChange)
 
+        self.ui.actionStart_Stop.triggered.connect(self.toggleSim)
+        self.ui.actionDock.triggered.connect(self.toggleDock)
+        self.ui.actionGithub_Repo.triggered.connect(self.openRepo)
+        self.ui.actionWas_macht_dieser_Link.triggered.connect(self.openRandomLink)
+        self.ui.actionAddElement.triggered.connect(self.addElem)
+
         #Elemente für die Parameter der Simulation:
         #Schritte p. sek.: self.ui.spinSteps (SpinBox)
         #Genauigkeit: self.ui.doubleAccuracy (DoubleSpinBox)
+        #GrapicsView: self.ui.grafiksView
 
     
     def addElem(self):
@@ -149,6 +145,24 @@ class MainWindow(QMainWindow):
         #Hier den Code zum stopen der Sim einsetzen und "pass" entfernen
         pass
         #------------------------
+    
+    def toggleSim(self):
+        if self.startStop == True:
+            self.stopSim()
+        else:
+            self.startSim()
+    
+    def toggleDock(self):
+        if self.ui.dockWidget.isVisible():
+            self.ui.dockWidget.setVisible(False)
+        else:
+            self.ui.dockWidget.setVisible(True)
+
+    def openRepo(self):
+        webbrowser.open("https://github.com/Corvus-XOS/Zimbos-Python")
+
+    def openRandomLink(self):
+        webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
 
 
@@ -161,6 +175,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     window = MainWindow(planetList)
+    window.showMaximized()
     window.show()
 
     sys.exit(app.exec())

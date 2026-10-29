@@ -401,13 +401,14 @@ QPushButton:pressed{
     </property>
     <addaction name="actionStart_Stop"/>
     <addaction name="separator"/>
-    <addaction name="actionElemente"/>
+    <addaction name="actionDock"/>
+    <addaction name="actionAddElement"/>
    </widget>
    <widget class="QMenu" name="menuHilfe">
     <property name="title">
      <string>Hilfe</string>
     </property>
-    <addaction name="actionFrag_Shannon"/>
+    <addaction name="actionWas_macht_dieser_Link"/>
     <addaction name="separator"/>
     <addaction name="actionGithub_Repo"/>
    </widget>
@@ -426,34 +427,42 @@ QPushButton:pressed{
     <string>Ctrl+Shift+R</string>
    </property>
   </action>
-  <action name="actionElemente">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset theme="mail-mark-important"/>
-   </property>
-   <property name="text">
-    <string>Elemente/ Sim</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+E</string>
-   </property>
-  </action>
-  <action name="actionFrag_Shannon">
-   <property name="icon">
-    <iconset theme="system-search"/>
-   </property>
-   <property name="text">
-    <string>Frag Shannon</string>
-   </property>
-  </action>
   <action name="actionGithub_Repo">
    <property name="icon">
     <iconset theme="applications-development"/>
    </property>
    <property name="text">
     <string>Github-Repo</string>
+   </property>
+  </action>
+  <action name="actionWas_macht_dieser_Link">
+   <property name="icon">
+    <iconset theme="dialog-question"/>
+   </property>
+   <property name="text">
+    <string>Was macht dieser Link?</string>
+   </property>
+  </action>
+  <action name="actionDock">
+   <property name="icon">
+    <iconset theme="applications-system"/>
+   </property>
+   <property name="text">
+    <string>Dock</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+E</string>
+   </property>
+  </action>
+  <action name="actionAddElement">
+   <property name="icon">
+    <iconset theme="list-add"/>
+   </property>
+   <property name="text">
+    <string>Element hinzufügen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+A</string>
    </property>
   </action>
  </widget>

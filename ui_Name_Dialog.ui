@@ -3,7 +3,7 @@
  <class>NameDialog</class>
  <widget class="QDialog" name="NameDialog">
   <property name="windowModality">
-   <enum>Qt::WindowModality::WindowModal</enum>
+   <enum>Qt::WindowModality::ApplicationModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -122,6 +122,15 @@ QPushButton:pressed{
          </property>
          <property name="text">
           <string>Übernehmen</string>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

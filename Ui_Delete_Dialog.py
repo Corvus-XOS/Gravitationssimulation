@@ -23,7 +23,7 @@ class Ui_DeleteDialog(object):
     def setupUi(self, DeleteDialog):
         if not DeleteDialog.objectName():
             DeleteDialog.setObjectName(u"DeleteDialog")
-        DeleteDialog.setWindowModality(Qt.WindowModality.WindowModal)
+        DeleteDialog.setWindowModality(Qt.WindowModality.ApplicationModal)
         DeleteDialog.resize(275, 100)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -71,6 +71,7 @@ class Ui_DeleteDialog(object):
 "QPushButton:pressed{\n"
 "	background-color: rgb(20, 150, 0);\n"
 "}")
+        self.pushAccept.setAutoDefault(False)
 
         self.horizontalLayout.addWidget(self.pushAccept)
 
@@ -82,6 +83,9 @@ class Ui_DeleteDialog(object):
 
 
         self.retranslateUi(DeleteDialog)
+
+        self.pushAccept.setDefault(True)
+
 
         QMetaObject.connectSlotsByName(DeleteDialog)
     # setupUi
