@@ -7,9 +7,9 @@ from Ui_Delete_Dialog import Ui_DeleteDialog
 
 class MassObject:
     def __init__(self, name):
-        self.__mass : int = 0
-        self.x_pos : int = 0
-        self.y_pos : int = 0
+        self.mass : float = 0
+        self.x_pos : float = 0
+        self.y_pos : float = 0
         self.__degree : float = 0.0
         self.x_spd : float = 0.0
         self.y_spd : float = 0.0
@@ -21,10 +21,10 @@ class MassObject:
         self.__name = name
 
     def getMass(self):
-        return self.__mass
+        return self.mass
     
-    def setMass(self, newMass):
-        self.__mass = int(newMass)
+    def setMass(self, newMass : float):
+        self.mass = float(newMass)
     
     def getDegree(self):
         return self.__degree
