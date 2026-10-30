@@ -39,7 +39,7 @@ class MassObject:
         return self.__color
     
     def setColor(self, newColor):
-        validColors = ["black", "blue", "green", "red", "yellow", "purple"] 
+        validColors = ["white", "blue", "green", "red", "yellow", "purple"] 
         if newColor.lower() in validColors:
             self.__color = newColor
     

@@ -311,6 +311,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.doubleAccuracy, 0, Qt.AlignmentFlag.AlignHCenter)
 
+        self.checkTrace = QCheckBox(self.dockWidgetContents)
+        self.checkTrace.setObjectName(u"checkTrace")
+
+        self.verticalLayout.addWidget(self.checkTrace, 0, Qt.AlignmentFlag.AlignHCenter)
+
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer)
@@ -411,6 +416,7 @@ class Ui_MainWindow(object):
         self.labelSimSet.setText(QCoreApplication.translate("MainWindow", u"Simulation", None))
         self.labelSteps.setText(QCoreApplication.translate("MainWindow", u"Schritte pro Frame", None))
         self.labelAccuracy.setText(QCoreApplication.translate("MainWindow", u"Genauigkeit", None))
+        self.checkTrace.setText(QCoreApplication.translate("MainWindow", u"Trace", None))
         self.pushStartSim.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.pushStopSim.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.menuSimulation.setTitle(QCoreApplication.translate("MainWindow", u"Simulation", None))

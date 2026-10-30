@@ -73,7 +73,7 @@ class MainWindow(QMainWindow):
         self.startStop = False #Notwendig für QAction Start/Stop, True für Sim läuft
 
         self.ui.comboElement.currentTextChanged.connect(self.textChange)
-        self.ui.comboColor.addItems(["black", "blue", "green", "red", "yellow", "purple"] )
+        self.ui.comboColor.addItems(["white", "blue", "green", "red", "yellow", "purple"] )
 
         self.ui.pushCreate.clicked.connect(self.addElem)
         self.ui.pushSetElem.clicked.connect(self.acceptChange)
@@ -97,7 +97,7 @@ class MainWindow(QMainWindow):
         self.ui.spinSteps.setValue(100)
 
         self.ui.graphicsView.scale(1, -1)
-        self.ui.graphicsView.setBackgroundBrush(QBrush(QColor(0xdddddd)))
+        # self.ui.graphicsView.setBackgroundBrush(QBrush(QColor(0xdddddd)))
         self.updateView()
 
         # self.items, self.last_pos = [], []
@@ -252,9 +252,10 @@ class MainWindow(QMainWindow):
     
             for i, p in enumerate(workingPlanetList):
                 x0, y0 = self.last_pos[i]
-                self.scene.addLine(x0, y0, p.x_pos, p.y_pos, QPen(QColor(p.getColor())))
                 self.items[i].setPos(p.x_pos, p.y_pos)
-                self.last_pos[i] = (p.x_pos, p.y_pos)
+                if self.ui.checkTrace.isChecked():
+                    self.scene.addLine(x0, y0, p.x_pos, p.y_pos, QPen(QColor(p.getColor())))
+                    self.last_pos[i] = (p.x_pos, p.y_pos)
 
     # Fenstergröße anpassen
     def updateView(self):
