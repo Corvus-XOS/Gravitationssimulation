@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'ui_Main_Window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.12.0
+## Created by: Qt User Interface Compiler version 6.11.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -68,7 +68,7 @@ class Ui_MainWindow(object):
         self.dockWidget = QDockWidget(MainWindow)
         self.dockWidget.setObjectName(u"dockWidget")
         self.dockWidget.setEnabled(True)
-        self.dockWidget.setMinimumSize(QSize(175, 776))
+        self.dockWidget.setMinimumSize(QSize(175, 802))
         self.dockWidget.setMaximumSize(QSize(175, 524287))
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
@@ -320,6 +320,19 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addItem(self.verticalSpacer)
 
+        self.pushReset = QPushButton(self.dockWidgetContents)
+        self.pushReset.setObjectName(u"pushReset")
+        self.pushReset.setStyleSheet(u"QPushButton{\n"
+"	background-color: rgb(80, 80, 80);\n"
+"	border-radius: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"	background-color: rgb(100, 100, 100);\n"
+"}")
+
+        self.verticalLayout.addWidget(self.pushReset)
+
         self.pushStartSim = QPushButton(self.dockWidgetContents)
         self.pushStartSim.setObjectName(u"pushStartSim")
         self.pushStartSim.setStyleSheet(u"QPushButton{\n"
@@ -353,7 +366,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 850, 33))
+        self.menuBar.setGeometry(QRect(0, 0, 850, 38))
         self.menuSimulation = QMenu(self.menuBar)
         self.menuSimulation.setObjectName(u"menuSimulation")
         self.menuHilfe = QMenu(self.menuBar)
@@ -417,6 +430,7 @@ class Ui_MainWindow(object):
         self.labelSteps.setText(QCoreApplication.translate("MainWindow", u"Schritte pro Frame", None))
         self.labelAccuracy.setText(QCoreApplication.translate("MainWindow", u"Genauigkeit", None))
         self.checkTrace.setText(QCoreApplication.translate("MainWindow", u"Trace", None))
+        self.pushReset.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
         self.pushStartSim.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.pushStopSim.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.menuSimulation.setTitle(QCoreApplication.translate("MainWindow", u"Simulation", None))

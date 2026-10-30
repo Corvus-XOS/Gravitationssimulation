@@ -46,7 +46,7 @@
    <property name="minimumSize">
     <size>
      <width>175</width>
-     <height>776</height>
+     <height>802</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -488,6 +488,23 @@ QPushButton:pressed{
         </spacer>
        </item>
        <item>
+        <widget class="QPushButton" name="pushReset">
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	background-color: rgb(80, 80, 80);
+	border-radius: 4px;
+}
+
+QPushButton:pressed{
+	background-color: rgb(100, 100, 100);
+}</string>
+         </property>
+         <property name="text">
+          <string>Reset</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="pushStartSim">
          <property name="styleSheet">
           <string notr="true">QPushButton{
@@ -532,7 +549,7 @@ QPushButton:pressed{
      <x>0</x>
      <y>0</y>
      <width>850</width>
-     <height>33</height>
+     <height>38</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">

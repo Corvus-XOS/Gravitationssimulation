@@ -8,6 +8,7 @@ from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QBrush, QPen, QColor, QPainter
 import physics_core as pc
 import math
+from copy import copy
 
 STEPS_PER_FRAME = 100
 RADIUS = 6
@@ -79,6 +80,7 @@ class MainWindow(QMainWindow):
         self.ui.pushSetElem.clicked.connect(self.acceptChange)
         self.ui.pushDiscElem.clicked.connect(self.discardChange)
         self.ui.pushDelete.clicked.connect(self.delElem)
+        self.ui.pushReset.clicked.connect(self.resetSim)
         self.ui.pushStartSim.clicked.connect(self.startSim)
         self.ui.pushStopSim.clicked.connect(self.stopSim)
 
@@ -197,9 +199,9 @@ class MainWindow(QMainWindow):
         workingPlanetList.clear()
         for i in range(0, len(planetList)):
             if planetList[i].active:
-                workingPlanetList.append(planetList[i])
+                workingPlanetList.append(copy(planetList[i]))
         print(workingPlanetList)
-        self.ui.statusBar.showMessage("Daten übernommen", 50000)
+        self.ui.statusBar.showMessage("Daten übernommen", 5000)
 
         self.updateView()
         self.items, self.last_pos = [], []
@@ -214,16 +216,38 @@ class MainWindow(QMainWindow):
         self.textChange()
         self.ui.statusBar.showMessage("Änderungen verworfen", 5000)
     
+    def resetSim(self):
+        self.ui.pushSetElem.setEnabled(True)
+        self.ui.pushDiscElem.setEnabled(True)
+        workingPlanetList.clear()
+        for i in range(0, len(planetList)):
+            if planetList[i].active:
+                workingPlanetList.append(copy(planetList[i]))
+        print(workingPlanetList)
+        self.updateView()
+        self.items, self.last_pos = [], []
+        for i, p in enumerate(workingPlanetList):
+            item = self.scene.addEllipse(-RADIUS, -RADIUS, 2*RADIUS, 2*RADIUS, QPen(Qt.NoPen), QBrush(QColor(p.getColor())))
+            item.setPos(p.x_pos, p.y_pos)
+            item.setZValue(1)
+            self.items.append(item)
+            self.last_pos.append((p.x_pos, p.y_pos))
+        self.ui.statusBar.showMessage("Simulation zurückgesetzt", 5000)
+    
     def startSim(self):
         #Hier den Code zum starten der Sim einsetzten und "pass" entfernen
         # pass
+        self.startStop = True
         self.timer.start(16)
+        self.ui.pushSetElem.setEnabled(False)
+        self.ui.pushDiscElem.setEnabled(False)
         print("start")
         #------------------------
 
     def stopSim(self):
         #Hier den Code zum stopen der Sim einsetzen und "pass" entfernen
         # pass
+        self.startStop = False
         self.timer.stop()
         print("stop")
         #------------------------
