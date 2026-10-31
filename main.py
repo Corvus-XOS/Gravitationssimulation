@@ -225,6 +225,7 @@ class MainWindow(QMainWindow):
                 workingPlanetList.append(copy(planetList[i]))
         print(workingPlanetList)
         self.updateView()
+        self.stopSim()              # Stoppt Simulation bei Reset
         self.items, self.last_pos = [], []
         for i, p in enumerate(workingPlanetList):
             item = self.scene.addEllipse(-RADIUS, -RADIUS, 2*RADIUS, 2*RADIUS, QPen(Qt.NoPen), QBrush(QColor(p.getColor())))
