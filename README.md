@@ -1,8 +1,7 @@
 # Python Projekt 5. Semester
-## Wichtige Infos und Links zum Projekt:
-Link für Git: https://git-scm.com/cheat-sheet
-Verwendete Python Version: 3.14.7
-## Relevante Packages:
-    - Pyside 6
-    - Numpy
-    - ...
+## ❓ Die ganz großen Fragen
+Zum Beispiel: wie beeinflussen sich Planeten und andere Himmelskörper gegenseitig? Dieses Programm bietet eine graphiasche Lösung. Versprochen.
+## 🐍 Code
+Da Python die beste Sprache aller Zeiten ist (und nicht, weil dieses Programm im Rahmen einer Python Vorlesung entstanden ist), wurde, überraschung, auch dieses Programm in Python geschrieben.
+## 🤯 Es gibt eine UI?
+Na klar, mit feinstem Pyside6/ Qt. Nie wieder Terminal! Es gibt sogar Hotkeys für Highperformer.
