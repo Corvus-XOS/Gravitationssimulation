@@ -279,7 +279,7 @@ class MainWindow(QMainWindow):
                 self.items[i].setPos(p.x_pos, p.y_pos)
                 if self.ui.checkTrace.isChecked():
                     self.scene.addLine(x0, y0, p.x_pos, p.y_pos, QPen(QColor(p.getColor())))
-                    self.last_pos[i] = (p.x_pos, p.y_pos)
+                self.last_pos[i] = (p.x_pos, p.y_pos)
 
     # Fenstergröße anpassen
     def updateView(self):
