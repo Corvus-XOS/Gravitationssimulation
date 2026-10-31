@@ -20,15 +20,15 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QCombo
     QDockWidget, QDoubleSpinBox, QFrame, QGraphicsView,
     QHBoxLayout, QLabel, QLineEdit, QMainWindow,
     QMenu, QMenuBar, QPushButton, QSizePolicy,
-    QSpacerItem, QSpinBox, QStatusBar, QVBoxLayout,
-    QWidget)
+    QSlider, QSpacerItem, QSpinBox, QStatusBar,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(850, 850)
-        MainWindow.setMinimumSize(QSize(850, 850))
+        MainWindow.resize(1000, 1000)
+        MainWindow.setMinimumSize(QSize(1000, 1000))
         MainWindow.setMaximumSize(QSize(16777215, 16777215))
         self.actionStart_Stop = QAction(MainWindow)
         self.actionStart_Stop.setObjectName(u"actionStart_Stop")
@@ -50,6 +50,10 @@ class Ui_MainWindow(object):
         self.actionAddElement.setObjectName(u"actionAddElement")
         icon4 = QIcon(QIcon.fromTheme(u"list-add"))
         self.actionAddElement.setIcon(icon4)
+        self.actionReset = QAction(MainWindow)
+        self.actionReset.setObjectName(u"actionReset")
+        icon5 = QIcon(QIcon.fromTheme(u"document-revert"))
+        self.actionReset.setIcon(icon5)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout_2 = QHBoxLayout(self.centralwidget)
@@ -68,7 +72,7 @@ class Ui_MainWindow(object):
         self.dockWidget = QDockWidget(MainWindow)
         self.dockWidget.setObjectName(u"dockWidget")
         self.dockWidget.setEnabled(True)
-        self.dockWidget.setMinimumSize(QSize(175, 802))
+        self.dockWidget.setMinimumSize(QSize(175, 908))
         self.dockWidget.setMaximumSize(QSize(175, 524287))
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
@@ -316,6 +320,25 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.checkTrace, 0, Qt.AlignmentFlag.AlignHCenter)
 
+        self.verticalSpacer_2 = QSpacerItem(20, 5, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+
+        self.verticalLayout.addItem(self.verticalSpacer_2)
+
+        self.labelZoom = QLabel(self.dockWidgetContents)
+        self.labelZoom.setObjectName(u"labelZoom")
+
+        self.verticalLayout.addWidget(self.labelZoom, 0, Qt.AlignmentFlag.AlignHCenter)
+
+        self.horSliderZoom = QSlider(self.dockWidgetContents)
+        self.horSliderZoom.setObjectName(u"horSliderZoom")
+        self.horSliderZoom.setOrientation(Qt.Orientation.Horizontal)
+        self.horSliderZoom.setInvertedAppearance(False)
+        self.horSliderZoom.setInvertedControls(False)
+        self.horSliderZoom.setTickPosition(QSlider.TickPosition.TicksBelow)
+        self.horSliderZoom.setTickInterval(5)
+
+        self.verticalLayout.addWidget(self.horSliderZoom)
+
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer)
@@ -366,7 +389,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 850, 38))
+        self.menuBar.setGeometry(QRect(0, 0, 1000, 30))
         self.menuSimulation = QMenu(self.menuBar)
         self.menuSimulation.setObjectName(u"menuSimulation")
         self.menuHilfe = QMenu(self.menuBar)
@@ -382,6 +405,7 @@ class Ui_MainWindow(object):
         self.menuBar.addAction(self.menuSimulation.menuAction())
         self.menuBar.addAction(self.menuHilfe.menuAction())
         self.menuSimulation.addAction(self.actionStart_Stop)
+        self.menuSimulation.addAction(self.actionReset)
         self.menuSimulation.addSeparator()
         self.menuSimulation.addAction(self.actionDock)
         self.menuSimulation.addAction(self.actionAddElement)
@@ -401,7 +425,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(accessibility)
         self.actionStart_Stop.setText(QCoreApplication.translate("MainWindow", u"Start/ Stop", None))
 #if QT_CONFIG(shortcut)
-        self.actionStart_Stop.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+R", None))
+        self.actionStart_Stop.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+R", None))
 #endif // QT_CONFIG(shortcut)
         self.actionGithub_Repo.setText(QCoreApplication.translate("MainWindow", u"Github-Repo", None))
         self.actionWas_macht_dieser_Link.setText(QCoreApplication.translate("MainWindow", u"Was macht dieser Link?", None))
@@ -411,7 +435,11 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(shortcut)
         self.actionAddElement.setText(QCoreApplication.translate("MainWindow", u"Element hinzuf\u00fcgen", None))
 #if QT_CONFIG(shortcut)
-        self.actionAddElement.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+A", None))
+        self.actionAddElement.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+A", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionReset.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
+#if QT_CONFIG(shortcut)
+        self.actionReset.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+R", None))
 #endif // QT_CONFIG(shortcut)
         self.labelElemSet.setText(QCoreApplication.translate("MainWindow", u"Element", None))
         self.pushCreate.setText(QCoreApplication.translate("MainWindow", u"+", None))
@@ -430,6 +458,7 @@ class Ui_MainWindow(object):
         self.labelSteps.setText(QCoreApplication.translate("MainWindow", u"Schritte pro Frame", None))
         self.labelAccuracy.setText(QCoreApplication.translate("MainWindow", u"Genauigkeit", None))
         self.checkTrace.setText(QCoreApplication.translate("MainWindow", u"Trace", None))
+        self.labelZoom.setText(QCoreApplication.translate("MainWindow", u"Zoom", None))
         self.pushReset.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
         self.pushStartSim.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.pushStopSim.setText(QCoreApplication.translate("MainWindow", u"Stop", None))

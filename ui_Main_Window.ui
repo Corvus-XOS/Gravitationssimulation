@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>850</width>
-    <height>850</height>
+    <width>1000</width>
+    <height>1000</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>850</width>
-    <height>850</height>
+    <width>1000</width>
+    <height>1000</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -46,7 +46,7 @@
    <property name="minimumSize">
     <size>
      <width>175</width>
-     <height>802</height>
+     <height>908</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -475,6 +475,48 @@ QPushButton:pressed{
         </widget>
        </item>
        <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>5</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item alignment="Qt::AlignmentFlag::AlignHCenter">
+        <widget class="QLabel" name="labelZoom">
+         <property name="text">
+          <string>Zoom</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="horSliderZoom">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="invertedAppearance">
+          <bool>false</bool>
+         </property>
+         <property name="invertedControls">
+          <bool>false</bool>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::TickPosition::TicksBelow</enum>
+         </property>
+         <property name="tickInterval">
+          <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Orientation::Vertical</enum>
@@ -548,8 +590,8 @@ QPushButton:pressed{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>850</width>
-     <height>38</height>
+     <width>1000</width>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">
@@ -557,6 +599,7 @@ QPushButton:pressed{
      <string>Simulation</string>
     </property>
     <addaction name="actionStart_Stop"/>
+    <addaction name="actionReset"/>
     <addaction name="separator"/>
     <addaction name="actionDock"/>
     <addaction name="actionAddElement"/>
@@ -581,7 +624,7 @@ QPushButton:pressed{
     <string>Start/ Stop</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+R</string>
+    <string>Ctrl+R</string>
    </property>
   </action>
   <action name="actionGithub_Repo">
@@ -619,7 +662,18 @@ QPushButton:pressed{
     <string>Element hinzufügen</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+A</string>
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionReset">
+   <property name="icon">
+    <iconset theme="document-revert"/>
+   </property>
+   <property name="text">
+    <string>Reset</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+R</string>
    </property>
   </action>
  </widget>

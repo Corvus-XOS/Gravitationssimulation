@@ -91,12 +91,14 @@ class MainWindow(QMainWindow):
         self.ui.actionGithub_Repo.triggered.connect(self.openRepo)
         self.ui.actionWas_macht_dieser_Link.triggered.connect(self.openRandomLink)
         self.ui.actionAddElement.triggered.connect(self.addElem)
+        self.ui.actionReset.triggered.connect(self.resetSim)
 
-        #Elemente für die Parameter der Simulation:
-        #Schritte p. sek.: self.ui.spinSteps (SpinBox)
-        #Genauigkeit: self.ui.doubleAccuracy (DoubleSpinBox)
         self.ui.doubleAccuracy.setValue(1e-3)
         self.ui.spinSteps.setValue(100)
+
+        #-------------------------------------------------------------------------
+        #Slider: self.ui.horSliderZoom
+        #Wert wird NICHT extra angezeigt, dafür kann jedoch dass darüber liegende Label verwendte werden: self.ui.labelZoom, evtl Wert anhängen
 
         self.ui.graphicsView.scale(1, -1)
         # self.ui.graphicsView.setBackgroundBrush(QBrush(QColor(0xdddddd)))
