@@ -4,8 +4,8 @@ import sys
 import webbrowser
 from webbrowser import open
 
-from PySide6.QtCore import Qt, QTimer
-from PySide6.QtGui import QBrush, QPen, QColor, QPainter
+from PySide6.QtCore import Qt, QTimer, QEvent
+from PySide6.QtGui import QBrush, QPen, QColor, QPainter, QTransform
 import physics_core as pc
 import math
 from copy import copy
@@ -99,9 +99,14 @@ class MainWindow(QMainWindow):
         #-------------------------------------------------------------------------
         #Slider: self.ui.horSliderZoom
         #Wert wird NICHT extra angezeigt, dafür kann jedoch dass darüber liegende Label verwendte werden: self.ui.labelZoom, evtl Wert anhängen
+        self.ui.horSliderZoom.valueChanged.connect(self.updateZoom)
+        self.ui.horSliderZoom.setMaximum(100)
+        self.ui.horSliderZoom.setMinimum(1)
+        self.ui.horSliderZoom.setValue(100)
 
         self.ui.graphicsView.scale(1, -1)
         # self.ui.graphicsView.setBackgroundBrush(QBrush(QColor(0xdddddd)))
+        self.ui.graphicsView.installEventFilter(self)    # für Resize des GraphicsView
         self.updateView()
 
         # self.items, self.last_pos = [], []
@@ -286,13 +291,27 @@ class MainWindow(QMainWindow):
 
     # Fenstergröße anpassen
     def updateView(self):
-        y = self.ui.graphicsView.height() / 2
-        x = self.ui.graphicsView.width() / 2
-
-        self.scene = QGraphicsScene(-x, -y, 2*x, 2*y)
+        self.scene = QGraphicsScene(self)
         self.ui.graphicsView.setScene(self.scene)
         self.ui.graphicsView.setRenderHint(QPainter.Antialiasing)
+        self.updateSceneRect()
 
+    # Szene an die aktuelle Größe des Viewports anpassen (Ursprung bleibt in der Mitte)
+    def updateSceneRect(self):
+        vp = self.ui.graphicsView.viewport()
+        w, h = vp.width(), vp.height()
+        self.scene.setSceneRect(-w / 2, -h / 2, w, h)
+
+    def eventFilter(self, obj, event):
+        if obj is self.ui.graphicsView and event.type() == QEvent.Type.Resize:
+            self.updateSceneRect()
+        return super().eventFilter(obj, event)
+
+    # Zoom anpassen
+    def updateZoom(self):
+        zoom = self.ui.horSliderZoom.value() / 100
+        self.ui.graphicsView.setTransform(QTransform().scale(zoom, -zoom))
+        print(self.ui.horSliderZoom.value())
 
 
 
