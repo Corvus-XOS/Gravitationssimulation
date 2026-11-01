@@ -92,6 +92,7 @@ class MainWindow(QMainWindow):
         self.ui.actionWas_macht_dieser_Link.triggered.connect(self.openRandomLink)
         self.ui.actionAddElement.triggered.connect(self.addElem)
         self.ui.actionReset.triggered.connect(self.resetSim)
+        self.ui.pushSave.clicked.connect(self.saveView)
 
         self.ui.doubleAccuracy.setValue(1e-3)
         self.ui.spinSteps.setValue(100)
@@ -104,10 +105,10 @@ class MainWindow(QMainWindow):
         self.ui.horSliderZoom.setMinimum(1)
         self.ui.horSliderZoom.setValue(100)
 
-        self.ui.graphicsView.scale(1, -1)
         # self.ui.graphicsView.setBackgroundBrush(QBrush(QColor(0xdddddd)))
         self.ui.graphicsView.installEventFilter(self)    # für Resize des GraphicsView
         self.updateView()
+        self.updateZoom()
 
         # self.items, self.last_pos = [], []
         # for i, p in enumerate(workingPlanetList):
@@ -313,6 +314,9 @@ class MainWindow(QMainWindow):
         self.ui.graphicsView.setTransform(QTransform().scale(zoom, -zoom))
         print(self.ui.horSliderZoom.value())
 
+    def saveView(self):
+        pixmap = self.ui.graphicsView.viewport().grab()
+        pixmap.save("simulation.png")
 
 
 

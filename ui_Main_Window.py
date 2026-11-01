@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'ui_Main_Window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.11.2
+## Created by: Qt User Interface Compiler version 6.12.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -339,6 +339,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.horSliderZoom)
 
+        self.pushSave = QPushButton(self.dockWidgetContents)
+        self.pushSave.setObjectName(u"pushSave")
+
+        self.verticalLayout.addWidget(self.pushSave)
+
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer)
@@ -389,7 +394,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 1000, 30))
+        self.menuBar.setGeometry(QRect(0, 0, 1000, 33))
         self.menuSimulation = QMenu(self.menuBar)
         self.menuSimulation.setObjectName(u"menuSimulation")
         self.menuHilfe = QMenu(self.menuBar)
@@ -459,6 +464,7 @@ class Ui_MainWindow(object):
         self.labelAccuracy.setText(QCoreApplication.translate("MainWindow", u"Genauigkeit", None))
         self.checkTrace.setText(QCoreApplication.translate("MainWindow", u"Trace", None))
         self.labelZoom.setText(QCoreApplication.translate("MainWindow", u"Zoom", None))
+        self.pushSave.setText(QCoreApplication.translate("MainWindow", u"Bild Speichern", None))
         self.pushReset.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
         self.pushStartSim.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.pushStopSim.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
