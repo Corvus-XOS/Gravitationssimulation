@@ -1,14 +1,13 @@
-#Contains auxillary functions and classes for main.py
-import Ui_Name_Screenshot
+#Enthält Klassen und Ui Elemente für main.py
 from PySide6.QtWidgets import QDialog
 
-#Namen anpassen
 from Ui_Delete_Dialog import Ui_DeleteDialog
 from Ui_Fehlermeldung import Ui_Fehlermeldung
 from Ui_Name_Dialog import Ui_NameDialog
 from Ui_Name_Screenshot import Ui_NameScreenshot
 
 
+#Planteten werden durch Klasse MassObject abgebildet
 class MassObject:
     def __init__(self, name):
         self.mass : float = 1
@@ -24,6 +23,7 @@ class MassObject:
         self.active = True
         self.__name = name
 
+    #Setter und getter Methoden für den Zugriff auf private Eigenschaften
     def getMass(self):
         return self.mass
     
@@ -55,6 +55,7 @@ class MassObject:
         if newInVelo >= 0.0 :
             self.__inVelo = newInVelo
 
+#Dialog für den Namen der Planeten
 class SetNameDialog(QDialog):
     def __init__(self, planetList : list[MassObject]):
         super().__init__()
@@ -63,13 +64,13 @@ class SetNameDialog(QDialog):
         self.planetList = planetList
         self.ui.labelError.setText("")
 
-        self.ui.pushAccept.clicked.connect(self.setName)
+        self.ui.pushAccept.clicked.connect(self.setName) #Verknüpft die zwei Knöpfe mit Funktionen
         self.ui.pushDiscard.clicked.connect(self.abort)
 
     def abort(self):
         self.close()
     
-    def setName(self):
+    def setName(self): #Überprüft, mob ein Name bereits vorhanden ist
         name = self.ui.lineName.text()
         for obj in self.planetList:
             if obj.getName() == name:
@@ -78,11 +79,11 @@ class SetNameDialog(QDialog):
         if name == "":
             self.ui.labelError.setText("Ein leerer Eintrag ist nicht erlaubt")
             return
-        self.planetList.append(MassObject(name))
+        self.planetList.append(MassObject(name))#Fügt Liste Objekt mit dem eingegebenen Namen an
         self.ui.labelError.setVisible(False)
         self.accept()
 
-
+#Dialog für das Löschen eines Planeten
 class DeleteDialog(QDialog):
     def __init__(self, name):
         super().__init__()
@@ -101,6 +102,7 @@ class DeleteDialog(QDialog):
     def abort(self):
         self.close()
 
+#Erzeugt einen Dialog mit einer Fehlermeldung
 class Fehlermeldung(QDialog):
     def __init__(self):
         super().__init__()
@@ -114,6 +116,7 @@ class Fehlermeldung(QDialog):
     def abort(self):
         self.close()
 
+#Dialog für den Namen der Screenshots
 class ScreenShotName(QDialog):
     def __init__(self):
         super().__init__()
@@ -133,5 +136,5 @@ class ScreenShotName(QDialog):
         if self.screenName != "":
             self.accept()
 
-    def getName(self):
+    def getName(self): #Ermöglicht es, nach dem Schließen des Dialogs auf die Eingabe zuzugreifen
         return self.screenName

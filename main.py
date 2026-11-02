@@ -47,8 +47,8 @@ p2.setColor("green")
 # planetList : list[MassObject] = [p1, p2]
 # workingPlanetList : list[MassObject] = planetList
 
-planetList : list[MassObject] = []
-workingPlanetList : list[MassObject] = []
+planetList : list[MassObject] = [] #Liste mit allen Elementen
+workingPlanetList : list[MassObject] = [] #Enthälte alle aktiven Planeten
 
 # planet1 = MassObject(name="p1", x_pos=50, y_pos=0, mass=1e15, speed=30, degree=150)
 # planet2 = MassObject(name="p2", x_pos=-25, y_pos=43.3, mass=1e15, speed=30, degree=270)
@@ -58,6 +58,7 @@ workingPlanetList : list[MassObject] = []
 
 ##############################################################################
 
+#Klasse für das Hauptfenster
 class MainWindow(QMainWindow):
     def __init__(self, planetList : list[MassObject], workingPlanetList : list[MassObject]):
         super().__init__()
@@ -67,16 +68,19 @@ class MainWindow(QMainWindow):
         self.workingPlanetList = workingPlanetList
         self.planetName = []
 
-        #Simulation params
+        #Simulations Parameter
         self.simSpeed : int = 1
         self.simAcc : float = 1.0
 
         self.index = 0
-        self.startStop = False #Notwendig für QAction Start/Stop, True für Sim läuft
+        self.startStop = False
 
+        #Verknüpfen der Ui Elemente des Hautpfensters mit Funktionen
+        #Einrichten der Auswahlbox für die Auswahl der Planeten
         self.ui.comboElement.currentTextChanged.connect(self.textChange)
         self.ui.comboColor.addItems(["white", "blue", "green", "red", "yellow", "purple"] )
 
+        #Verknüpfen der Knöpfe
         self.ui.pushCreate.clicked.connect(self.addElem)
         self.ui.pushSetElem.clicked.connect(self.acceptChange)
         self.ui.pushDiscElem.clicked.connect(self.discardChange)
@@ -86,8 +90,7 @@ class MainWindow(QMainWindow):
         self.ui.pushStopSim.clicked.connect(self.stopSim)
         self.ui.pushSave.clicked.connect(self.saveView)
 
-        self.ui.comboElement.currentIndexChanged.connect(self.textChange)
-
+        #Vernküpfen der Tastenkürzeln
         self.ui.actionStart_Stop.triggered.connect(self.toggleSim)
         self.ui.actionDock.triggered.connect(self.toggleDock)
         self.ui.actionGithub_Repo.triggered.connect(self.openRepo)
@@ -125,11 +128,11 @@ class MainWindow(QMainWindow):
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.step)
 
-    
+    #Fügt Element zur Liste der Planeten hinzu
     def addElem(self):
         nameDialog = SetNameDialog(self.planetList)
-        if nameDialog.exec() == QDialog.DialogCode.Accepted:
-            elemName = planetList[-1].getName()
+        if nameDialog.exec() == QDialog.DialogCode.Accepted: #Ruft Dialog für Namenswahl auf
+            elemName = planetList[-1].getName() #Wird ausgeführt, wenn im Dialog bestätigt wurde
             self.ui.comboElement.addItem(elemName)
 
             self.count = self.ui.comboElement.count()
@@ -137,34 +140,34 @@ class MainWindow(QMainWindow):
 
             self.ui.statusBar.showMessage("Element hinzugefügt", 5000)
         
-
+    #Entfernt Planet aus Liste
     def delElem(self):
         curText = self.ui.comboElement.currentText()
         idx : int = -1
 
-        for obj in planetList:
+        for obj in planetList: #Sucht nach dem Index des derzeit in der Auswahlbox aktiven Planeten
             if obj.getName() == curText:
                 idx = planetList.index(obj)
                 break
 
-        if idx != -1:
+        if idx != -1: #Wenn die Auswahlbox nicht leer ist
             deleteDialog = DeleteDialog(planetList[idx].getName())
-            if deleteDialog.exec() == QDialog.DialogCode.Accepted:
-                self.ui.comboElement.removeItem(self.ui.comboElement.currentIndex())
+            if deleteDialog.exec() == QDialog.DialogCode.Accepted: #Führt Dialog zum Löschen aus
+                self.ui.comboElement.removeItem(self.ui.comboElement.currentIndex()) #Wird asugewählt, wenn der Dialog bestätigt wurde
                 planetList.pop(idx)
                 self.ui.statusBar.showMessage("Element gelöscht", 5000)
 
-    
+    #Aktualisiert die Daten über die Plaeten, wenn in der Auswahlbox ein anderer Planet ausgewählt wurde
     def textChange(self):
         curText = self.ui.comboElement.currentText()
         idx : int = 0
 
-        for obj in planetList:
+        for obj in planetList: #Sucht nach dem Index des ausgewählten Planeten
             if obj.getName() == curText:
                 idx = planetList.index(obj)
 
         planet = planetList[idx]
-        if planet is not None:
+        if planet is not None: #Aktualisiert alle Ui Elemente für die Daten der Planeten
             if(planet.active):
                 self.ui.checkAktiv.setCheckState(Qt.CheckState.Checked)
             else:
@@ -178,7 +181,7 @@ class MainWindow(QMainWindow):
             if idx != -1:
                 self.ui.comboColor.setCurrentIndex(idx)
 
-    
+    #Bestätigt Änderungen an den Daten von Planeten
     def acceptChange(self):
         curText = self.ui.comboElement.currentText()
         if curText == "":
@@ -189,13 +192,13 @@ class MainWindow(QMainWindow):
         for obj in planetList:
             if obj.getName() == curText:
                 idx = planetList.index(obj)
-        try:
+        try: #Überprüft, ob bei der Masse eine Zahl übergeben wurde
             planetList[idx].setMass(float(self.ui.lineEditMasse.text()))
         except ValueError:
             fehlermeldung = Fehlermeldung()
             fehlermeldung.exec()
             return
-        planetList[idx].active = self.ui.checkAktiv.isChecked()
+        planetList[idx].active = self.ui.checkAktiv.isChecked() #Übernimmt alle Daten, welche für den Planten im Dock ausgewählt wurden
         planetList[idx].setMass(float(self.ui.lineEditMasse.text()))
         planetList[idx].setInVelo(self.ui.spinVelo.value())
         planetList[idx].setDegree(self.ui.spinDegree.value())
@@ -206,14 +209,13 @@ class MainWindow(QMainWindow):
         planetList[idx].y_pos = self.ui.spinYPos.value()
         planetList[idx].setColor(self.ui.comboColor.currentText())
 
-        workingPlanetList.clear()
+        workingPlanetList.clear() #Aktualisiert die Liste der aktiven Planeten
         for i in range(0, len(planetList)):
             if planetList[i].active:
                 workingPlanetList.append(copy(planetList[i]))
-        print(workingPlanetList)
         self.ui.statusBar.showMessage("Daten übernommen", 5000)
 
-        self.updateView()
+        self.updateView() #Aktualisert die Ansicht, da sich auch die Postion von Planeten verändern kann
         self.items, self.last_pos = [], []
         for i, p in enumerate(workingPlanetList):
             item = self.scene.addEllipse(-RADIUS, -RADIUS, 2*RADIUS, 2*RADIUS, QPen(), QBrush(QColor(p.getColor())))
@@ -222,10 +224,12 @@ class MainWindow(QMainWindow):
             self.items.append(item)
             self.last_pos.append((p.x_pos, p.y_pos))
 
+    #verwirft Änderungen an den Daten von Planeten, in dem textChange() aufgerufen wird
     def discardChange(self):
         self.textChange()
         self.ui.statusBar.showMessage("Änderungen verworfen", 5000)
     
+    #Setz die Siumlation zurück
     def resetSim(self):
         self.ui.pushSetElem.setEnabled(True)
         self.ui.pushDiscElem.setEnabled(True)
@@ -233,8 +237,7 @@ class MainWindow(QMainWindow):
         for i in range(0, len(planetList)):
             if planetList[i].active:
                 workingPlanetList.append(copy(planetList[i]))
-        print(workingPlanetList)
-        self.updateView()
+        self.updateView()           #Aktualisiert die Ansicht
         self.stopSim()              # Stoppt Simulation bei Reset
         self.items, self.last_pos = [], []
         for i, p in enumerate(workingPlanetList):
@@ -245,39 +248,37 @@ class MainWindow(QMainWindow):
             self.last_pos.append((p.x_pos, p.y_pos))
         self.ui.statusBar.showMessage("Simulation zurückgesetzt", 5000)
     
+    #Startet die Simulation
     def startSim(self):
-        #Hier den Code zum starten der Sim einsetzten und "pass" entfernen
-        # pass
         self.startStop = True
         self.timer.start(16)
         self.ui.pushSetElem.setEnabled(False)
         self.ui.pushDiscElem.setEnabled(False)
-        print("start")
-        #------------------------
 
+    #Stoppt die Simulation
     def stopSim(self):
-        #Hier den Code zum stopen der Sim einsetzen und "pass" entfernen
-        # pass
         self.startStop = False
         self.timer.stop()
-        print("stop")
-        #------------------------
     
+    #Wählt einen der darüberliegenden Funktionen aus, notwendig für Kurzbefehl
     def toggleSim(self):
         if self.startStop == True:
             self.stopSim()
         else:
             self.startSim()
     
+    #Wechselt die Ansicht des Docks
     def toggleDock(self):
         if self.ui.dockWidget.isVisible():
             self.ui.dockWidget.setVisible(False)
         else:
             self.ui.dockWidget.setVisible(True)
 
+    #Öffnet den "zufälligen" Link, für Kurzbefehl
     def openRepo(self):
         webbrowser.open("https://github.com/Corvus-XOS/Zimbos-Python")
 
+    #Öffnet Github Repository, für Kurzbefehl
     def openRandomLink(self):
         webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
@@ -314,12 +315,12 @@ class MainWindow(QMainWindow):
     def updateZoom(self):
         zoom = self.ui.horSliderZoom.value() / 100
         self.ui.graphicsView.setTransform(QTransform().scale(zoom, -zoom))
-        print(self.ui.horSliderZoom.value())
 
+    #Speichert die aktuelle Ansicht
     def saveView(self):
         name = ""
         screenShotDialog = ScreenShotName()
-        if screenShotDialog.exec() == QDialog.DialogCode.Accepted:
+        if screenShotDialog.exec() == QDialog.DialogCode.Accepted: #Ruft Dialog zur Namenswahl des Bils aus
             name = screenShotDialog.getName() + ".png"
             pixmap = self.ui.graphicsView.viewport().grab()
             pixmap.save(name)
@@ -332,8 +333,8 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    window = MainWindow(planetList, workingPlanetList=workingPlanetList)
+    window = MainWindow(planetList, workingPlanetList=workingPlanetList) #Legt Instanz des Hauptfensters an
     # window.showMaximized()
-    window.show()
+    window.show() #Zeigt Hauptfenster an
 
-    sys.exit(app.exec())
+    sys.exit(app.exec()) #Startet Anwendung
