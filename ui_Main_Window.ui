@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>1000</height>
+    <width>900</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1000</width>
-    <height>1000</height>
+    <width>900</width>
+    <height>900</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -46,7 +46,7 @@
    <property name="minimumSize">
     <size>
      <width>175</width>
-     <height>909</height>
+     <height>826</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -474,22 +474,6 @@ QPushButton:pressed{
          </property>
         </widget>
        </item>
-       <item>
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Policy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>5</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item alignment="Qt::AlignmentFlag::AlignHCenter">
         <widget class="QLabel" name="labelZoom">
          <property name="text">
@@ -597,8 +581,8 @@ QPushButton:pressed{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
-     <height>38</height>
+     <width>900</width>
+     <height>33</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">

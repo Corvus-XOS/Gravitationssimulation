@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'ui_Main_Window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.11.2
+## Created by: Qt User Interface Compiler version 6.12.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -27,8 +27,8 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1000, 1000)
-        MainWindow.setMinimumSize(QSize(1000, 1000))
+        MainWindow.resize(900, 900)
+        MainWindow.setMinimumSize(QSize(900, 900))
         MainWindow.setMaximumSize(QSize(16777215, 16777215))
         self.actionStart_Stop = QAction(MainWindow)
         self.actionStart_Stop.setObjectName(u"actionStart_Stop")
@@ -80,7 +80,7 @@ class Ui_MainWindow(object):
         self.dockWidget = QDockWidget(MainWindow)
         self.dockWidget.setObjectName(u"dockWidget")
         self.dockWidget.setEnabled(True)
-        self.dockWidget.setMinimumSize(QSize(175, 909))
+        self.dockWidget.setMinimumSize(QSize(175, 826))
         self.dockWidget.setMaximumSize(QSize(175, 524287))
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
@@ -328,10 +328,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.checkTrace, 0, Qt.AlignmentFlag.AlignHCenter)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 5, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-
-        self.verticalLayout.addItem(self.verticalSpacer_2)
-
         self.labelZoom = QLabel(self.dockWidgetContents)
         self.labelZoom.setObjectName(u"labelZoom")
 
@@ -402,7 +398,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 1000, 38))
+        self.menuBar.setGeometry(QRect(0, 0, 900, 33))
         self.menuSimulation = QMenu(self.menuBar)
         self.menuSimulation.setObjectName(u"menuSimulation")
         self.menuHilfe = QMenu(self.menuBar)

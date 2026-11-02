@@ -10,9 +10,7 @@ from PySide6.QtGui import QBrush, QColor, QPainter, QPen, QTransform
 
 import physics_core as pc
 
-STEPS_PER_FRAME = 100
 RADIUS = 6
-# COLORS = ["red", "green", "blue"]
 
 #from PySide6.QtLocation import QPlaceUser
 from PySide6.QtWidgets import (
@@ -31,32 +29,8 @@ from auxFile import (
 )
 from ui_Main_Window import Ui_MainWindow
 
-##############################################################################
-
-p1 = MassObject("p1")
-p2 = MassObject("p2")
-
-p1.mass = 1e15
-p1.setColor("purple")
-
-p2.mass = 1e0
-p2.y_pos = 20
-p2.x_spd = 40
-p2.setColor("green")
-
-# planetList : list[MassObject] = [p1, p2]
-# workingPlanetList : list[MassObject] = planetList
-
 planetList : list[MassObject] = [] #Liste mit allen Elementen
 workingPlanetList : list[MassObject] = [] #Enthälte alle aktiven Planeten
-
-# planet1 = MassObject(name="p1", x_pos=50, y_pos=0, mass=1e15, speed=30, degree=150)
-# planet2 = MassObject(name="p2", x_pos=-25, y_pos=43.3, mass=1e15, speed=30, degree=270)
-# planet3 = MassObject(name="p3", x_pos=-25, y_pos=-43.3, mass=1e15, speed=30, degree=30)
-
-# planet_arr = [planet1, planet2, planet3]
-
-##############################################################################
 
 #Klasse für das Hauptfenster
 class MainWindow(QMainWindow):
@@ -114,16 +88,9 @@ class MainWindow(QMainWindow):
 
         self.ui.graphicsView.setBackgroundBrush(QBrush(QColor(0x0)))
         self.ui.graphicsView.installEventFilter(self)    # für Resize des GraphicsView
+        # Initialisierung von GraphicsView
         self.updateView()
         self.updateZoom()
-
-        # self.items, self.last_pos = [], []
-        # for i, p in enumerate(workingPlanetList):
-        #     item = self.scene.addEllipse(-RADIUS, -RADIUS, 2*RADIUS, 2*RADIUS, QPen(Qt.NoPen), QBrush(QColor(p.getColor())))
-        #     item.setPos(p.x_pos, p.y_pos)
-        #     item.setZValue(1)
-        #     self.items.append(item)
-        #     self.last_pos.append((p.x_pos, p.y_pos))
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.step)
