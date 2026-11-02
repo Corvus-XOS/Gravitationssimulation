@@ -218,7 +218,7 @@ class MainWindow(QMainWindow):
     #Startet die Simulation
     def startSim(self):
         self.startStop = True
-        self.timer.start(16)
+        self.timer.start(self.ui.spinSPF.value())
         self.ui.pushSetElem.setEnabled(False)
         self.ui.pushDiscElem.setEnabled(False)
 

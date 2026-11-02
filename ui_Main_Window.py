@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(900, 900)
+        MainWindow.resize(900, 934)
         MainWindow.setMinimumSize(QSize(900, 900))
         MainWindow.setMaximumSize(QSize(16777215, 16777215))
         self.actionStart_Stop = QAction(MainWindow)
@@ -80,7 +80,7 @@ class Ui_MainWindow(object):
         self.dockWidget = QDockWidget(MainWindow)
         self.dockWidget.setObjectName(u"dockWidget")
         self.dockWidget.setEnabled(True)
-        self.dockWidget.setMinimumSize(QSize(175, 826))
+        self.dockWidget.setMinimumSize(QSize(175, 880))
         self.dockWidget.setMaximumSize(QSize(175, 524287))
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
@@ -308,6 +308,21 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.spinSteps, 0, Qt.AlignmentFlag.AlignHCenter)
 
+        self.label = QLabel(self.dockWidgetContents)
+        self.label.setObjectName(u"label")
+
+        self.verticalLayout.addWidget(self.label, 0, Qt.AlignmentFlag.AlignHCenter)
+
+        self.spinSPF = QSpinBox(self.dockWidgetContents)
+        self.spinSPF.setObjectName(u"spinSPF")
+        self.spinSPF.setMinimumSize(QSize(100, 0))
+        self.spinSPF.setMaximumSize(QSize(100, 16777215))
+        self.spinSPF.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.spinSPF.setMinimum(1)
+        self.spinSPF.setMaximum(1000000000)
+
+        self.verticalLayout.addWidget(self.spinSPF, 0, Qt.AlignmentFlag.AlignHCenter)
+
         self.labelAccuracy = QLabel(self.dockWidgetContents)
         self.labelAccuracy.setObjectName(u"labelAccuracy")
 
@@ -475,6 +490,7 @@ class Ui_MainWindow(object):
         self.pushDiscElem.setText(QCoreApplication.translate("MainWindow", u"Verwerfen", None))
         self.labelSimSet.setText(QCoreApplication.translate("MainWindow", u"Simulation", None))
         self.labelSteps.setText(QCoreApplication.translate("MainWindow", u"Schritte pro Frame", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"ms pro Frame", None))
         self.labelAccuracy.setText(QCoreApplication.translate("MainWindow", u"Genauigkeit", None))
         self.checkTrace.setText(QCoreApplication.translate("MainWindow", u"Trace", None))
         self.labelZoom.setText(QCoreApplication.translate("MainWindow", u"Zoom", None))
