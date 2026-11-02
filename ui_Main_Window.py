@@ -450,7 +450,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(shortcut)
         self.actionAddElement.setText(QCoreApplication.translate("MainWindow", u"Element hinzuf\u00fcgen", None))
 #if QT_CONFIG(shortcut)
-        self.actionAddElement.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+A", None))
+        self.actionAddElement.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+A", None))
 #endif // QT_CONFIG(shortcut)
         self.actionReset.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
 #if QT_CONFIG(shortcut)

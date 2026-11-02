@@ -4,7 +4,6 @@ import math
 import sys
 import webbrowser
 from copy import copy
-from webbrowser import open
 
 from PySide6.QtCore import QEvent, Qt, QTimer
 from PySide6.QtGui import QBrush, QColor, QPainter, QPen, QTransform
@@ -21,11 +20,6 @@ from PySide6.QtWidgets import (
     QDialog,
     QGraphicsScene,
     QMainWindow,
-    QMenu,
-    QPushButton,
-    QSpinBox,
-    QStatusBar,
-    QWidgetAction,
 )
 
 from auxFile import (
