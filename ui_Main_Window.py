@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'ui_Main_Window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.12.0
+## Created by: Qt User Interface Compiler version 6.11.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -54,6 +54,14 @@ class Ui_MainWindow(object):
         self.actionReset.setObjectName(u"actionReset")
         icon5 = QIcon(QIcon.fromTheme(u"document-revert"))
         self.actionReset.setIcon(icon5)
+        self.actionBild_Speichern = QAction(MainWindow)
+        self.actionBild_Speichern.setObjectName(u"actionBild_Speichern")
+        icon6 = QIcon(QIcon.fromTheme(u"camera-photo"))
+        self.actionBild_Speichern.setIcon(icon6)
+        self.actionElement_bernehmen = QAction(MainWindow)
+        self.actionElement_bernehmen.setObjectName(u"actionElement_bernehmen")
+        icon7 = QIcon(QIcon.fromTheme(u"document-save"))
+        self.actionElement_bernehmen.setIcon(icon7)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout_2 = QHBoxLayout(self.centralwidget)
@@ -72,7 +80,7 @@ class Ui_MainWindow(object):
         self.dockWidget = QDockWidget(MainWindow)
         self.dockWidget.setObjectName(u"dockWidget")
         self.dockWidget.setEnabled(True)
-        self.dockWidget.setMinimumSize(QSize(175, 908))
+        self.dockWidget.setMinimumSize(QSize(175, 909))
         self.dockWidget.setMaximumSize(QSize(175, 524287))
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
@@ -394,7 +402,7 @@ class Ui_MainWindow(object):
         MainWindow.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dockWidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 1000, 33))
+        self.menuBar.setGeometry(QRect(0, 0, 1000, 38))
         self.menuSimulation = QMenu(self.menuBar)
         self.menuSimulation.setObjectName(u"menuSimulation")
         self.menuHilfe = QMenu(self.menuBar)
@@ -414,6 +422,8 @@ class Ui_MainWindow(object):
         self.menuSimulation.addSeparator()
         self.menuSimulation.addAction(self.actionDock)
         self.menuSimulation.addAction(self.actionAddElement)
+        self.menuSimulation.addAction(self.actionBild_Speichern)
+        self.menuSimulation.addAction(self.actionElement_bernehmen)
         self.menuHilfe.addAction(self.actionWas_macht_dieser_Link)
         self.menuHilfe.addSeparator()
         self.menuHilfe.addAction(self.actionGithub_Repo)
@@ -445,6 +455,14 @@ class Ui_MainWindow(object):
         self.actionReset.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
 #if QT_CONFIG(shortcut)
         self.actionReset.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+R", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionBild_Speichern.setText(QCoreApplication.translate("MainWindow", u"Bild Speichern", None))
+#if QT_CONFIG(shortcut)
+        self.actionBild_Speichern.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionElement_bernehmen.setText(QCoreApplication.translate("MainWindow", u"Element \u00fcbernehmen", None))
+#if QT_CONFIG(shortcut)
+        self.actionElement_bernehmen.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+D", None))
 #endif // QT_CONFIG(shortcut)
         self.labelElemSet.setText(QCoreApplication.translate("MainWindow", u"Element", None))
         self.pushCreate.setText(QCoreApplication.translate("MainWindow", u"+", None))

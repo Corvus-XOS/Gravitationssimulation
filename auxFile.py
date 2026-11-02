@@ -1,10 +1,12 @@
 #Contains auxillary functions and classes for main.py
+import Ui_Name_Screenshot
 from PySide6.QtWidgets import QDialog
 
 #Namen anpassen
 from Ui_Delete_Dialog import Ui_DeleteDialog
 from Ui_Fehlermeldung import Ui_Fehlermeldung
 from Ui_Name_Dialog import Ui_NameDialog
+from Ui_Name_Screenshot import Ui_NameScreenshot
 
 
 class MassObject:
@@ -59,7 +61,6 @@ class SetNameDialog(QDialog):
         self.ui = Ui_NameDialog()
         self.ui.setupUi(self)
         self.planetList = planetList
-        self.success = False
         self.ui.labelError.setText("")
 
         self.ui.pushAccept.clicked.connect(self.setName)
@@ -79,11 +80,8 @@ class SetNameDialog(QDialog):
             return
         self.planetList.append(MassObject(name))
         self.ui.labelError.setVisible(False)
-        self.success = True
         self.accept()
-    
-    def getResFlag(self):
-        return self.success
+
 
 class DeleteDialog(QDialog):
     def __init__(self, name):
@@ -115,3 +113,25 @@ class Fehlermeldung(QDialog):
     
     def abort(self):
         self.close()
+
+class ScreenShotName(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_NameScreenshot()
+        self.ui.setupUi(self)
+
+        self.ui.pushAccept.clicked.connect(self.setName)
+        self.ui.pushDiscard.clicked.connect(self.abort)
+
+        self.screenName = ""
+
+    def abort(self):
+        self.close()
+    
+    def setName(self):
+        self.screenName = self.ui.lineName.text()
+        if self.screenName != "":
+            self.accept()
+
+    def getName(self):
+        return self.screenName

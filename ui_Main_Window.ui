@@ -46,7 +46,7 @@
    <property name="minimumSize">
     <size>
      <width>175</width>
-     <height>908</height>
+     <height>909</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -598,7 +598,7 @@ QPushButton:pressed{
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>33</height>
+     <height>38</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSimulation">
@@ -610,6 +610,8 @@ QPushButton:pressed{
     <addaction name="separator"/>
     <addaction name="actionDock"/>
     <addaction name="actionAddElement"/>
+    <addaction name="actionBild_Speichern"/>
+    <addaction name="actionElement_bernehmen"/>
    </widget>
    <widget class="QMenu" name="menuHilfe">
     <property name="title">
@@ -681,6 +683,28 @@ QPushButton:pressed{
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+R</string>
+   </property>
+  </action>
+  <action name="actionBild_Speichern">
+   <property name="icon">
+    <iconset theme="camera-photo"/>
+   </property>
+   <property name="text">
+    <string>Bild Speichern</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionElement_bernehmen">
+   <property name="icon">
+    <iconset theme="document-save"/>
+   </property>
+   <property name="text">
+    <string>Element übernehmen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
    </property>
   </action>
  </widget>

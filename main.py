@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
+import math
 import sys
 import webbrowser
+from copy import copy
 from webbrowser import open
 
-from PySide6.QtCore import Qt, QTimer, QEvent
-from PySide6.QtGui import QBrush, QPen, QColor, QPainter, QTransform
+from PySide6.QtCore import QEvent, Qt, QTimer
+from PySide6.QtGui import QBrush, QColor, QPainter, QPen, QTransform
+
 import physics_core as pc
-import math
-from copy import copy
 
 STEPS_PER_FRAME = 100
 RADIUS = 6
@@ -18,16 +19,22 @@ RADIUS = 6
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
+    QGraphicsScene,
     QMainWindow,
     QMenu,
     QPushButton,
     QSpinBox,
     QStatusBar,
     QWidgetAction,
-    QGraphicsScene,
 )
 
-from auxFile import DeleteDialog, Fehlermeldung, MassObject, SetNameDialog
+from auxFile import (
+    DeleteDialog,
+    Fehlermeldung,
+    MassObject,
+    ScreenShotName,
+    SetNameDialog,
+)
 from ui_Main_Window import Ui_MainWindow
 
 ##############################################################################
@@ -83,6 +90,7 @@ class MainWindow(QMainWindow):
         self.ui.pushReset.clicked.connect(self.resetSim)
         self.ui.pushStartSim.clicked.connect(self.startSim)
         self.ui.pushStopSim.clicked.connect(self.stopSim)
+        self.ui.pushSave.clicked.connect(self.saveView)
 
         self.ui.comboElement.currentIndexChanged.connect(self.textChange)
 
@@ -92,7 +100,9 @@ class MainWindow(QMainWindow):
         self.ui.actionWas_macht_dieser_Link.triggered.connect(self.openRandomLink)
         self.ui.actionAddElement.triggered.connect(self.addElem)
         self.ui.actionReset.triggered.connect(self.resetSim)
-        self.ui.pushSave.clicked.connect(self.saveView)
+        self.ui.actionBild_Speichern.triggered.connect(self.saveView)
+        self.ui.actionElement_bernehmen.triggered.connect(self.acceptChange)
+        
 
         self.ui.doubleAccuracy.setValue(1e-3)
         self.ui.spinSteps.setValue(100)
@@ -105,7 +115,7 @@ class MainWindow(QMainWindow):
         self.ui.horSliderZoom.setMinimum(1)
         self.ui.horSliderZoom.setValue(100)
 
-        # self.ui.graphicsView.setBackgroundBrush(QBrush(QColor(0xdddddd)))
+        self.ui.graphicsView.setBackgroundBrush(QBrush(QColor(0x0)))
         self.ui.graphicsView.installEventFilter(self)    # für Resize des GraphicsView
         self.updateView()
         self.updateZoom()
@@ -149,9 +159,7 @@ class MainWindow(QMainWindow):
                 self.ui.comboElement.removeItem(self.ui.comboElement.currentIndex())
                 planetList.pop(idx)
                 self.ui.statusBar.showMessage("Element gelöscht", 5000)
-                return
-            else:
-                return
+
     
     def textChange(self):
         curText = self.ui.comboElement.currentText()
@@ -214,7 +222,7 @@ class MainWindow(QMainWindow):
         self.updateView()
         self.items, self.last_pos = [], []
         for i, p in enumerate(workingPlanetList):
-            item = self.scene.addEllipse(-RADIUS, -RADIUS, 2*RADIUS, 2*RADIUS, QPen(Qt.NoPen), QBrush(QColor(p.getColor())))
+            item = self.scene.addEllipse(-RADIUS, -RADIUS, 2*RADIUS, 2*RADIUS, QPen(), QBrush(QColor(p.getColor())))
             item.setPos(p.x_pos, p.y_pos)
             item.setZValue(1)
             self.items.append(item)
@@ -236,7 +244,7 @@ class MainWindow(QMainWindow):
         self.stopSim()              # Stoppt Simulation bei Reset
         self.items, self.last_pos = [], []
         for i, p in enumerate(workingPlanetList):
-            item = self.scene.addEllipse(-RADIUS, -RADIUS, 2*RADIUS, 2*RADIUS, QPen(Qt.NoPen), QBrush(QColor(p.getColor())))
+            item = self.scene.addEllipse(-RADIUS, -RADIUS, 2*RADIUS, 2*RADIUS, QPen(), QBrush(QColor(p.getColor()))) #Pen: Qt.NoPen
             item.setPos(p.x_pos, p.y_pos)
             item.setZValue(1)
             self.items.append(item)
@@ -315,8 +323,12 @@ class MainWindow(QMainWindow):
         print(self.ui.horSliderZoom.value())
 
     def saveView(self):
-        pixmap = self.ui.graphicsView.viewport().grab()
-        pixmap.save("simulation.png")
+        name = ""
+        screenShotDialog = ScreenShotName()
+        if screenShotDialog.exec() == QDialog.DialogCode.Accepted:
+            name = screenShotDialog.getName() + ".png"
+            pixmap = self.ui.graphicsView.viewport().grab()
+            pixmap.save(name)
 
 
 
