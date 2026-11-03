@@ -1,0 +1,140 @@
+#Enthält Klassen und Ui Elemente für main.py
+from PySide6.QtWidgets import QDialog
+
+from Ui_Delete_Dialog import Ui_DeleteDialog
+from Ui_Fehlermeldung import Ui_Fehlermeldung
+from Ui_Name_Dialog import Ui_NameDialog
+from Ui_Name_Screenshot import Ui_NameScreenshot
+
+
+#Planteten werden durch Klasse MassObject abgebildet
+class MassObject:
+    def __init__(self, name):
+        self.mass : float = 1
+        self.x_pos : float = 0
+        self.y_pos : float = 0
+        self.__degree : float = 0.0
+        self.x_spd : float = 0.0
+        self.y_spd : float = 0.0
+        self.dx_spd : float = 0.0
+        self.dy_spd : float = 0.0
+        self.__inVelo : float = 0.0
+        self.__color = "schwarz"
+        self.active = True
+        self.__name = name
+
+    #Setter und getter Methoden für den Zugriff auf private Eigenschaften
+    def getMass(self):
+        return self.mass
+    
+    def setMass(self, newMass : float):
+        self.mass = float(newMass)
+    
+    def getDegree(self):
+        return self.__degree
+    
+    def setDegree(self, newDegree):
+        if float(newDegree) >= 0.0 and float(newDegree) < 360.0:
+            self.__degree = float(newDegree)
+    
+    def getColor(self):
+        return self.__color
+    
+    def setColor(self, newColor):
+        validColors = ["white", "blue", "green", "red", "yellow", "purple"] 
+        if newColor.lower() in validColors:
+            self.__color = newColor
+    
+    def getName(self):
+        return self.__name
+    
+    def getInVelo(self):
+        return self.__inVelo
+
+    def setInVelo(self, newInVelo):
+        if newInVelo >= 0.0 :
+            self.__inVelo = newInVelo
+
+#Dialog für den Namen der Planeten
+class SetNameDialog(QDialog):
+    def __init__(self, planetList : list[MassObject]):
+        super().__init__()
+        self.ui = Ui_NameDialog()
+        self.ui.setupUi(self)
+        self.planetList = planetList
+        self.ui.labelError.setText("")
+
+        self.ui.pushAccept.clicked.connect(self.setName) #Verknüpft die zwei Knöpfe mit Funktionen
+        self.ui.pushDiscard.clicked.connect(self.abort)
+
+    def abort(self):
+        self.close()
+    
+    def setName(self): #Überprüft, mob ein Name bereits vorhanden ist
+        name = self.ui.lineName.text()
+        for obj in self.planetList:
+            if obj.getName() == name:
+                self.ui.labelError.setText("Die Bezeichnung ist bereits vergeben")
+                return
+        if name == "":
+            self.ui.labelError.setText("Ein leerer Eintrag ist nicht erlaubt")
+            return
+        self.planetList.append(MassObject(name))#Fügt Liste Objekt mit dem eingegebenen Namen an
+        self.ui.labelError.setVisible(False)
+        self.accept()
+
+#Dialog für das Löschen eines Planeten
+class DeleteDialog(QDialog):
+    def __init__(self, name):
+        super().__init__()
+        self.ui = Ui_DeleteDialog()
+        self.ui.setupUi(self)
+        self.name = name
+        self.text = "Möchten Sie Element " + self.name + " löschen?"
+        self.ui.labelDelete.setText(self.text)
+
+        self.ui.pushAccept.clicked.connect(self.delete)
+        self.ui.pushDiscard.clicked.connect(self.abort)
+    
+    def delete(self):
+        self.accept()
+    
+    def abort(self):
+        self.close()
+
+#Erzeugt einen Dialog mit einer Fehlermeldung
+class Fehlermeldung(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_Fehlermeldung()
+        self.ui.setupUi(self)
+        self.text = "Eingabe ist keine Zahl"
+        self.ui.labelDelete.setText(self.text)
+
+        self.ui.pushDiscard.clicked.connect(self.abort)
+    
+    def abort(self):
+        self.close()
+
+#Dialog für den Namen der Screenshots
+class ScreenShotName(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_NameScreenshot()
+        self.ui.setupUi(self)
+
+        self.ui.pushAccept.clicked.connect(self.setName)
+        self.ui.pushDiscard.clicked.connect(self.abort)
+
+        self.screenName = ""
+
+    def abort(self):
+        self.close()
+    
+    def setName(self):
+        self.screenName = self.ui.lineName.text()
+        if self.screenName != "":
+            self.accept()
+
+    def getName(self): #Ermöglicht es, nach dem Schließen des Dialogs auf die Eingabe zuzugreifen
+        return self.screenName
