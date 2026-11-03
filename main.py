@@ -224,6 +224,7 @@ class MainWindow(QMainWindow):
         self.ui.pushSetElem.setEnabled(False)
         self.ui.pushDiscElem.setEnabled(False)
         self.ui.pushDelete.setEnabled(False)
+        self.ui.statusBar.showMessage("Simulation gestartet", 5000)
 
     #Stoppt die Simulation
     def stopSim(self):
