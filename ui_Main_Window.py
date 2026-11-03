@@ -445,7 +445,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Schwerkraft Simulation", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Gravitationssimulation", None))
 #if QT_CONFIG(accessibility)
         MainWindow.setAccessibleName("")
 #endif // QT_CONFIG(accessibility)

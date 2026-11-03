@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Schwerkraft Simulation</string>
+   <string>Gravitationssimulation</string>
   </property>
   <property name="accessibleName">
    <string/>

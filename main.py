@@ -27,7 +27,7 @@ from auxFile import (
     ScreenShotName,
     SetNameDialog,
 )
-from ui_Main_Window import Ui_MainWindow
+from Ui_Main_Window import Ui_MainWindow
 
 planetList : list[MassObject] = [] #Liste mit allen Elementen
 workingPlanetList : list[MassObject] = [] #Enthälte alle aktiven Planeten

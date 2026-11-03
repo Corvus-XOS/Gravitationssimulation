@@ -1,1 +1,1 @@
-pyside6-uic.exe .\ui_Main_Window.ui -o ui_Main_Window.py
+pyside6-uic.exe .\ui_Main_Window.ui -o Ui_Main_Window.py
