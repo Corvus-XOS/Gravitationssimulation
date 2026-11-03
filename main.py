@@ -123,6 +123,7 @@ class MainWindow(QMainWindow):
                 self.ui.comboElement.removeItem(self.ui.comboElement.currentIndex()) #Wird asugewählt, wenn der Dialog bestätigt wurde
                 planetList.pop(idx)
                 self.ui.statusBar.showMessage("Element gelöscht", 5000)
+                self.resetSim()
 
     #Aktualisiert die Daten über die Plaeten, wenn in der Auswahlbox ein anderer Planet ausgewählt wurde
     def textChange(self):
@@ -200,6 +201,7 @@ class MainWindow(QMainWindow):
     def resetSim(self):
         self.ui.pushSetElem.setEnabled(True)
         self.ui.pushDiscElem.setEnabled(True)
+        self.ui.pushDelete.setEnabled(True)
         workingPlanetList.clear()
         for i in range(0, len(planetList)):
             if planetList[i].active:
@@ -221,6 +223,7 @@ class MainWindow(QMainWindow):
         self.timer.start(self.ui.spinSPF.value())
         self.ui.pushSetElem.setEnabled(False)
         self.ui.pushDiscElem.setEnabled(False)
+        self.ui.pushDelete.setEnabled(False)
 
     #Stoppt die Simulation
     def stopSim(self):
